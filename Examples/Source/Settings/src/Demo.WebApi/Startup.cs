@@ -8,6 +8,7 @@ using Demo.Domain.Plugin;
 using Demo.Infra.Plugin;
 using Demo.WebApi.Plugin;
 using NetFusion.Base.Logging;
+using NetFusion.Settings.Plugin;
 
 namespace Demo.WebApi
 {
@@ -27,6 +28,7 @@ namespace Demo.WebApi
             services.CompositeContainer(_configuration, new NullExtendedLogger())
                 
                 // Register Additional Plugins Here:
+                .AddSettings()
                 
                 .AddPlugin<InfraPlugin>()
                 .AddPlugin<AppPlugin>()

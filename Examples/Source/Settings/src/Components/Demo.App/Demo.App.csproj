@@ -10,5 +10,6 @@
     <PackageReference Include="NetFusion.Common" Version="3.3.10" />
     <PackageReference Include="NetFusion.Base" Version="3.3.10" />
     <PackageReference Include="NetFusion.Bootstrap" Version="3.3.10" />
+    <PackageReference Include="NetFusion.Settings" Version="3.3.10" />
   </ItemGroup>
 </Project>
