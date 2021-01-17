@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "9ac20545-6393-48a1-9d29-a931697b1fb9",
+		"name": "NetFusion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CQRS",
+			"item": [
+				{
+					"name": "SyncComand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Doug\",\n\t\"lastName\": \"Bowan\",\n\t\"state\": \"PA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/registration/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"registration",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AsyncCommand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"make\": \"VW\",\n\t\"model\": \"Alltrack\",\n\t\"year\": 2017,\n\t\"state\": \"NC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/registration/auto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"registration",
+								"auto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DomainEvent-Passed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"make\": \"VW\",\n\t\"model\": \"Alltrack\",\n\t\"year\": 2017,\n\t\"state\": \"NC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/registration/auto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"registration",
+								"auto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DomainEvent-Failed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"make\": \"VW\",\n\t\"model\": \"Jetta\",\n\t\"year\": 2017,\n\t\"state\": \"NC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/registration/auto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"registration",
+								"auto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DomainEvent-Error",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"make\": \"Yugo\",\n\t\"model\": \"45\",\n\t\"year\": 2008,\n\t\"state\": \"CA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/registration/auto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"registration",
+								"auto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CommandWithError",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"make\": \"Oldsmobile\",\n\t\"model\": \"Cutlas\",\n\t\"year\": 1985,\n\t\"state\": \"NC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/registration/auto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"registration",
+								"auto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MongoDb",
+			"item": [
+				{
+					"name": "PostData",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state\": \"CT\",\n    \"capital\": \"Hartford\",\n    \"zipCode\": \"06101\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/StateInfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"StateInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetData",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/StateInfo/CT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"StateInfo",
+								"CT"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RabbitMq",
+			"item": [
+				{
+					"name": "DirectExchange",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"444 West Main Street\",\n    \"city\": \"Cheshire\",\n    \"state\": \"CT\",\n    \"zip\": \"06410\",\n    \"askingPrice\": 35000,\n    \"soldPrice\": 30000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/sampledirect/property/sales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"sampledirect",
+								"property",
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TopicExchange",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"make\": \"VW\",\n    \"model\": \"GTI\",\n    \"year\": 2017,\n    \"color\": \"Black\",\n    \"isNew\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/sampletopic/auto/sales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"sampletopic",
+								"auto",
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FanoutExchange",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"zip\": \"27517\",\n    \"reading\": 72.674,\n    \"coordinates\": {\n        \"north\": 35.88383,\n        \"west\": 78.88373\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/samplefanout/temp/reading",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"samplefanout",
+								"temp",
+								"reading"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Workqueue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subject\": \"Test Email\",\n    \"fromAddress\": \"mark.twain@home.com\",\n    \"toAddresses\": [\n        \"satya.nadella@microsoft.com\",\n        \"steve.ballmer@glad_he_is_gone.com\"\n    ],\n    \"message\": \"Thanks for .net core.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/sampleworkqueue/send/email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"sampleworkqueue",
+								"send",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RPC-1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"535 Wood Hill Road\",\n    \"city\": \"Cheshire\",\n    \"state\": \"NC\",\n    \"zip\": \"06410\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/samplerpc/taxes/property",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"samplerpc",
+								"taxes",
+								"property"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RPC-2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vin\": \"VW454234AJ742343\",\n    \"zipCode\": \"15068\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/samplerpc/taxes/auto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"samplerpc",
+								"taxes",
+								"auto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
