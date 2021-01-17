@@ -7,8 +7,9 @@ using Demo.App.Plugin;
 using Demo.Domain.Plugin;
 using Demo.Infra.Plugin;
 using Demo.WebApi.Plugin;
-using NetFusion.Base.Logging;
 using NetFusion.Messaging.Plugin;
+using NetFusion.Serilog;
+using Serilog;
 
 namespace Demo.WebApi
 {
@@ -25,7 +26,7 @@ namespace Demo.WebApi
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.CompositeContainer(_configuration, new NullExtendedLogger())
+            services.CompositeContainer(_configuration, new SerilogExtendedLogger())
                 
                 // Register Additional Plugins Here:
                 .AddMessaging()
@@ -41,6 +42,8 @@ namespace Demo.WebApi
 
         public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSerilogRequestLogging();
+            
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
