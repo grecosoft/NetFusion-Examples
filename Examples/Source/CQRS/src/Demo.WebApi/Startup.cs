@@ -5,9 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using NetFusion.Builder;
 using Demo.App.Plugin;
 using Demo.Domain.Plugin;
+using Demo.Infra;
 using Demo.Infra.Plugin;
 using Demo.WebApi.Plugin;
 using NetFusion.Messaging.Plugin;
+using NetFusion.Messaging.Plugin.Configs;
 using NetFusion.Serilog;
 using Serilog;
 
@@ -31,6 +33,13 @@ namespace Demo.WebApi
                 // Register Additional Plugins Here:
                 .AddMessaging()
                 
+                // .InitPluginConfig<MessageDispatchConfig>(config =>
+                // {
+                //     config.ClearPublishers();
+                //     config.AddPublisher<ExamplePublisher>();
+                //     config.AddEnricher<MachineNameEnricher>();
+                // })
+
                 .AddPlugin<InfraPlugin>()
                 .AddPlugin<AppPlugin>()
                 .AddPlugin<DomainPlugin>()
