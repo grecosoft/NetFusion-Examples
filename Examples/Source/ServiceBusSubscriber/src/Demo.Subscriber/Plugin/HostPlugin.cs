@@ -1,6 +1,6 @@
 ﻿using NetFusion.Bootstrap.Plugins;
 
-namespace Subscriber.Plugin
+namespace Demo.Subscriber.Plugin
 {
     public class HostPlugin : PluginBase
     {

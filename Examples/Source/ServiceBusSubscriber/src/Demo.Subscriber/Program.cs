@@ -1,6 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
+using Demo.Subscriber.Plugin;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,9 +8,8 @@ using Microsoft.Extensions.Logging;
 using NetFusion.Azure.ServiceBus.Plugin;
 using NetFusion.Bootstrap.Container;
 using NetFusion.Builder;
-using Subscriber.Plugin;
 
-namespace Subscriber
+namespace Demo.Subscriber
 {
     internal class Program
     {
