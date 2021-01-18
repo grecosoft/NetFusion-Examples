@@ -1,18 +1,17 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using NetFusion.Azure.ServiceBus.Plugin;
 using NetFusion.Bootstrap.Container;
 using NetFusion.Builder;
-using NetFusion.RabbitMQ.Plugin;
-using NetFusion.Redis.Plugin;
+using Subscriber.Plugin;
 
-namespace Demo.Subscriber
+namespace Subscriber
 {
-    public class Program
+    internal class Program
     {
         public static async Task Main(string[] args)
         {
@@ -20,8 +19,6 @@ namespace Demo.Subscriber
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.CompositeContainer(hostContext.Configuration)
-                        .AddRabbitMq()
-                        .AddRedis()
                         .AddPlugin<HostPlugin>()
                         .Compose();
                 })
