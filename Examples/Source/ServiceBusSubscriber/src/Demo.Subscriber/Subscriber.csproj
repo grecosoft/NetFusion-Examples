@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+    <PackageReference Include="NetFusion.Azure.ServiceBus" Version="9.9.48" />
     <PackageReference Include="NetFusion.Builder" Version="9.9.47" />
   </ItemGroup>
 

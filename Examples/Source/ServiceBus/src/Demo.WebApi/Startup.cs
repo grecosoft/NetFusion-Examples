@@ -7,6 +7,7 @@ using Demo.App.Plugin;
 using Demo.Domain.Plugin;
 using Demo.Infra.Plugin;
 using Demo.WebApi.Plugin;
+using NetFusion.Azure.ServiceBus.Plugin;
 using NetFusion.Serilog;
 using Serilog;
 
@@ -28,6 +29,7 @@ namespace Demo.WebApi
             services.CompositeContainer(_configuration, new SerilogExtendedLogger())
                 
                 // Register Additional Plugins Here:
+                .AddAzureServiceBus()
                 
                 .AddPlugin<InfraPlugin>()
                 .AddPlugin<AppPlugin>()
