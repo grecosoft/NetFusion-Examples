@@ -191,16 +191,16 @@
 			]
 		},
 		{
-			"name": "MongoDb",
+			"name": "AzureServiceBus",
 			"item": [
 				{
-					"name": "PostData",
+					"name": "CommandNoResponse",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"state\": \"CT\",\n    \"capital\": \"Hartford\",\n    \"zipCode\": \"06101\"\n}",
+							"raw": "{\n    \"customerId\": \"3223423423\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Twain\",\n    \"address\": \"111 West Main Street Cheshire, CT 06410\",\n    \"expirationDate\": \"2023-10-05\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -208,7 +208,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/StateInfo",
+							"raw": "http://localhost:5000/api/ServiceBus/command/no-response",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -216,19 +216,30 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"StateInfo"
+								"ServiceBus",
+								"command",
+								"no-response"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GetData",
+					"name": "CommandWithResponse",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vin\": \"23453455VWR23423\",\n    \"dateOfService\": \"2021-01-05\",\n    \"service\": \"Oil change and tire rotation\",\n    \"numberOfOwners\": 2,\n    \"isTotalLoss\": false,\n    \"miles\": 25000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:5000/api/StateInfo/CT",
+							"raw": "http://localhost:5000/api/ServiceBus/command/with-response",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -236,8 +247,103 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"StateInfo",
-								"CT"
+								"ServiceBus",
+								"command",
+								"with-response"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CommandRpcResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"values\": [10, 3, 30, 100, 50, 60, 48, 22]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/ServiceBus/command/rpc-response",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ServiceBus",
+								"command",
+								"rpc-response"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DomainEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dataSource\": \"BDX\",\n    \"sourceId\": \"1992689\",\n    \"listedPrice\": 480000,\n    \"realtor\": \"Lisa McAgent\",\n    \"squareFeet\": \"3300\",\n    \"zipCode\": \"06410\",\n    \"state\": \"CT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/ServiceBus/domain-event/topic",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ServiceBus",
+								"domain-event",
+								"topic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DomainEventFanout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"23423423424SDF23423\",\n    \"amount\": 5000,\n    \"state\": \"NC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/ServiceBus/domain-event/topic/fan-out",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ServiceBus",
+								"domain-event",
+								"topic",
+								"fan-out"
 							]
 						}
 					},
@@ -526,24 +632,21 @@
 			]
 		},
 		{
-			"name": "ServiceBus",
+			"name": "REST",
 			"item": [
 				{
-					"name": "CommandNoResponse",
+					"name": "ControllerActionLink",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"customerId\": \"3223423423\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Twain\",\n    \"address\": \"111 West Main Street Cheshire, CT 06410\",\n    \"expirationDate\": \"2023-10-05\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/hal+json",
+								"type": "text"
 							}
-						},
+						],
 						"url": {
-							"raw": "http://localhost:5000/api/ServiceBus/command/no-response",
+							"raw": "http://localhost:5000/api/listing/1000",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -551,30 +654,26 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"ServiceBus",
-								"command",
-								"no-response"
+								"listing",
+								"1000"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "CommandWithResponse",
+					"name": "StringUrlLink",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"vin\": \"23453455VWR23423\",\n    \"dateOfService\": \"2021-01-05\",\n    \"service\": \"Oil change and tire rotation\",\n    \"numberOfOwners\": 2,\n    \"isTotalLoss\": false,\n    \"miles\": 25000\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/hal+json",
+								"type": "text"
 							}
-						},
+						],
 						"url": {
-							"raw": "http://localhost:5000/api/ServiceBus/command/with-response",
+							"raw": "http://localhost:5000/api/listing/1000",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -582,30 +681,26 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"ServiceBus",
-								"command",
-								"with-response"
+								"listing",
+								"1000"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "CommandRpcResponse",
+					"name": "StringInterpolatedUrlLink",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"values\": [10, 3, 30, 100, 50, 60, 48, 22]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/hal+json",
+								"type": "text"
 							}
-						},
+						],
 						"url": {
-							"raw": "http://localhost:5000/api/ServiceBus/command/rpc-response",
+							"raw": "http://localhost:5000/api/listing/1000",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -613,30 +708,26 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"ServiceBus",
-								"command",
-								"rpc-response"
+								"listing",
+								"1000"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "DomainEvent",
+					"name": "ControllerActionTemplateLink",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"dataSource\": \"BDX\",\n    \"sourceId\": \"1992689\",\n    \"listedPrice\": 480000,\n    \"realtor\": \"Lisa McAgent\",\n    \"squareFeet\": \"3300\",\n    \"zipCode\": \"06410\",\n    \"state\": \"CT\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/hal+json"
 							}
-						},
+						],
 						"url": {
-							"raw": "http://localhost:5000/api/ServiceBus/domain-event/topic",
+							"raw": "http://localhost:5000/api/listing/1000",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -644,30 +735,26 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"ServiceBus",
-								"domain-event",
-								"topic"
+								"listing",
+								"1000"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "DomainEventFanout",
+					"name": "EmbeddedResource",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"customerId\": \"23423423424SDF23423\",\n    \"amount\": 5000,\n    \"state\": \"NC\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/hal+json"
 							}
-						},
+						],
 						"url": {
-							"raw": "http://localhost:5000/api/ServiceBus/domain-event/topic/fan-out",
+							"raw": "http://localhost:5000/api/listingembedded/1000",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -675,10 +762,117 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"ServiceBus",
-								"domain-event",
-								"topic",
-								"fan-out"
+								"listingembedded",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EmbeddedModel",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/hal+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/listingembedded/2000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"listingembedded",
+								"2000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntryPointResource",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/hal+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/listing/entry",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"listing",
+								"entry"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MongoDb",
+			"item": [
+				{
+					"name": "PostData",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state\": \"CT\",\n    \"capital\": \"Hartford\",\n    \"zipCode\": \"06101\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/StateInfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"StateInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetData",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/StateInfo/CT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"StateInfo",
+								"CT"
 							]
 						}
 					},
