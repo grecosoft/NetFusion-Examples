@@ -3,10 +3,10 @@ name: Master Build & Publish
 on:
   push:
     branches: 
-      - master
-      - develop
+    - master
+    - develop
     paths:
-    - 'Examples/Source'
+    - 'Examples/Source/**'
 
 jobs:
   build:
