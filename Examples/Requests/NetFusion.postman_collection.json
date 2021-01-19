@@ -435,6 +435,256 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Mapping",
+			"item": [
+				{
+					"name": "CodeMapping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/mapping/code-mapping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mapping",
+								"code-mapping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DerivedMapping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/mapping/derived-targets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mapping",
+								"derived-targets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InjectedMapping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/mapping/dependency-mapping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mapping",
+								"dependency-mapping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FactoryMapping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/mapping/opensource-mapping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mapping",
+								"opensource-mapping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ServiceBus",
+			"item": [
+				{
+					"name": "CommandNoResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"3223423423\",\n    \"firstName\": \"Mark\",\n    \"lastName\": \"Twain\",\n    \"address\": \"111 West Main Street Cheshire, CT 06410\",\n    \"expirationDate\": \"2023-10-05\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/ServiceBus/command/no-response",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ServiceBus",
+								"command",
+								"no-response"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CommandWithResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vin\": \"23453455VWR23423\",\n    \"dateOfService\": \"2021-01-05\",\n    \"service\": \"Oil change and tire rotation\",\n    \"numberOfOwners\": 2,\n    \"isTotalLoss\": false,\n    \"miles\": 25000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/ServiceBus/command/with-response",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ServiceBus",
+								"command",
+								"with-response"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CommandRpcResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"values\": [10, 3, 30, 100, 50, 60, 48, 22]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/ServiceBus/command/rpc-response",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ServiceBus",
+								"command",
+								"rpc-response"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DomainEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dataSource\": \"BDX\",\n    \"sourceId\": \"1992689\",\n    \"listedPrice\": 480000,\n    \"realtor\": \"Lisa McAgent\",\n    \"squareFeet\": \"3300\",\n    \"zipCode\": \"06410\",\n    \"state\": \"CT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/ServiceBus/domain-event/topic",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ServiceBus",
+								"domain-event",
+								"topic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DomainEventFanout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"23423423424SDF23423\",\n    \"amount\": 5000,\n    \"state\": \"NC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/ServiceBus/domain-event/topic/fan-out",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ServiceBus",
+								"domain-event",
+								"topic",
+								"fan-out"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
