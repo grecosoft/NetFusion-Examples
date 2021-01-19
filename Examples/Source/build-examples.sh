@@ -1,3 +1,5 @@
+# Builds all examples solutions:
+
 dotnet clean ./CQRS/src
 dotnet clean ./Demo/src
 dotnet clean ./DemoSubscriber/src/Demo.Subscriber
