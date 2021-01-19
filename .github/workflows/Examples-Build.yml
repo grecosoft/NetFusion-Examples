@@ -22,4 +22,5 @@ jobs:
       with:
         dotnet-version: 5.0.102
     - name: Build All Example Solutions
-      run: ./Examples/Source/build-examples.sh
+      working-directory: ./Examples/Source
+      run: ./build-examples.sh
