@@ -1,3 +1,5 @@
+using App.Component.Plugin.Configs;
+using App.Component.Plugin.Modules;
 using NetFusion.Bootstrap.Plugins;
 
 namespace App.Component.Plugin
@@ -11,6 +13,9 @@ namespace App.Component.Plugin
         public AppPlugin()
         {
             Description = "Example component containing application services.";
+            
+            AddConfig<HelloWorldConfig>();
+            AddModule<AppModuleOne>();
         }   
     }
 }

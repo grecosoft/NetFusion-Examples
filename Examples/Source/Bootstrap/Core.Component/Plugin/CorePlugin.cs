@@ -1,3 +1,4 @@
+using Core.Component.Plugin.Modules;
 using NetFusion.Bootstrap.Plugins;
 
 namespace Core.Component.Plugin
@@ -8,8 +9,12 @@ namespace Core.Component.Plugin
         public override PluginTypes PluginType => PluginTypes.CorePlugin;
         public override string Name => "Core Component";
 
-        public CorePlugin() {
+        public CorePlugin() 
+        {
             Description = "Plugin component containing non application specific components.";
+            
+            AddModule<CoreModuleOne>();
+            AddModule<CoreModuleTwo>();
         }
     }
 }

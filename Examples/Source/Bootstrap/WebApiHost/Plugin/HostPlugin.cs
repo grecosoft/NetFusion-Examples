@@ -14,6 +14,8 @@ namespace WebApiHost.Plugin
         public WebApiPlugin()
         {
             Description = "Example WebApi Host";
+            
+            AddModule<HostModuleOne>();
         }
     }
 }
