@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NetFusion.Bootstrap" Version="9.9.50" />
+    <PackageReference Include="NetFusion.Bootstrap" Version="3.3.10" />
   </ItemGroup>
 
 </Project>
