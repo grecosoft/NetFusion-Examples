@@ -15,6 +15,7 @@ namespace Core.Component.Plugin
             
             AddModule<CoreModuleOne>();
             AddModule<CoreModuleTwo>();
+            AddModule<ValidAddressModule>();
         }
     }
 }
