@@ -10,7 +10,7 @@ dotnet clean ./ServiceBus/src
 dotnet clean ./ServiceBusSubscriber/src/Demo.Subscriber
 dotnet clean ./Settings/src
 dotnet clean ./REST/src
-dotnet clean ./Bootstrap/src
+dotnet clean ./Bootstrap
 
 dotnet build ./CQRS/src
 dotnet build ./Demo/src
@@ -23,4 +23,4 @@ dotnet build ./ServiceBus/src
 dotnet build ./ServiceBusSubscriber/src/Demo.Subscriber
 dotnet build ./Settings/src
 dotnet build ./REST/src
-dotnet build ./Bootstrap/src
+dotnet build ./Bootstrap
