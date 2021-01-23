@@ -24,5 +24,10 @@ namespace Core.Component.Plugin.Modules
             var address = _addresses.FirstOrDefault(a => a.IpAddresses.Contains(ip));
             return address?.Source;
         }
+
+        public override void Log(IDictionary<string, object> moduleLog)
+        {
+            moduleLog["AllowedAddresses"] = _addresses.SelectMany(a => a.IpAddresses);
+        }
     }
 }
