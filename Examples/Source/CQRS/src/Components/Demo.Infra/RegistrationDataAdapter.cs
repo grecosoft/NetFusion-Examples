@@ -24,7 +24,7 @@ namespace Demo.Infra
             var httpClient = new HttpClient();
 
             HttpResponseMessage response = await httpClient.GetAsync(
-                @"https://raw.githubusercontent.com/grecosoft/NetFusion-Examples/master/Examples/Data/valid_autos.json?token=ABMGONUWW5WR3KNTX7O6PILABTBBG");
+                @"https://raw.githubusercontent.com/grecosoft/NetFusion-Examples/master/Examples/Data/valid_autos.json");
 
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();

@@ -1,7 +1,7 @@
 using System;
 using NetFusion.Bootstrap.Plugins;
 
-namespace WebApiHost.Plugin
+namespace WebApiHost.Plugin.Modules
 {
     public class HostModuleOne : PluginModule
     {

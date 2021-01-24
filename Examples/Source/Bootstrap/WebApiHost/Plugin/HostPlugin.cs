@@ -1,4 +1,5 @@
 using NetFusion.Bootstrap.Plugins;
+using WebApiHost.Plugin.Modules;
 
 namespace WebApiHost.Plugin
 {
