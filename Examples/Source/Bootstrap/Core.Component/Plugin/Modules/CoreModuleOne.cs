@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using NetFusion.Bootstrap.Plugins;
 
 namespace Core.Component.Plugin.Modules
@@ -28,6 +29,24 @@ namespace Core.Component.Plugin.Modules
         public Tuple<int, int> IsValidRange(int value)
         {
             return _validRanges.FirstOrDefault(r => value >= r.Item1 && value <= r.Item2);
+        }
+        
+        protected override Task OnStartModuleAsync(IServiceProvider services)
+        {
+            Console.WriteLine($"Starting: {GetType().Name}");
+            return base.OnStartModuleAsync(services);
+        }
+
+        protected override Task OnRunModuleAsync(IServiceProvider services)
+        {
+            Console.WriteLine($"Running: {GetType().Name}");
+            return base.OnRunModuleAsync(services);
+        }
+
+        protected override Task OnStopModuleAsync(IServiceProvider services)
+        {
+            Console.WriteLine($"Stopping: {GetType().Name}");
+            return base.OnStopModuleAsync(services);
         }
     }
 }
