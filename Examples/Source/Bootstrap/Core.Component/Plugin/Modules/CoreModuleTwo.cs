@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
 using NetFusion.Bootstrap.Plugins;
 
 namespace Core.Component.Plugin.Modules
@@ -21,6 +22,11 @@ namespace Core.Component.Plugin.Modules
             {
                 Console.WriteLine($"24 is value range[{range.Item1}, {range.Item2}]");
             }
+        }
+
+        public override void RegisterDefaultServices(IServiceCollection services)
+        {
+            services.AddSingleton<IValidNumbers, DefaultValidNumberComponent>();
         }
     }
 }

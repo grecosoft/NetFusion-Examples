@@ -1,6 +1,8 @@
 using System;
 using App.Component.Plugin.Configs;
+using Core.Component;
 using Core.Component.Plugin;
+using Microsoft.Extensions.DependencyInjection;
 using NetFusion.Bootstrap.Plugins;
 
 namespace App.Component.Plugin.Modules
@@ -30,6 +32,11 @@ namespace App.Component.Plugin.Modules
             {
                 Console.WriteLine($"102 is value range[{range.Item1}, {range.Item2}]");
             }
+        }
+
+        public override void RegisterServices(IServiceCollection services)
+        {
+            services.AddSingleton<IValidNumbers, ValidNumberComponent>();
         }
     }
 }
