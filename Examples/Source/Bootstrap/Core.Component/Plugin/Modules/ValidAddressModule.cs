@@ -27,7 +27,7 @@ namespace Core.Component.Plugin.Modules
 
         public override void Log(IDictionary<string, object> moduleLog)
         {
-            moduleLog["AllowedAddresses"] = _addresses.SelectMany(a => a.IpAddresses);
+            moduleLog["AllowedAddresses"] = _addresses.SelectMany(a => a.IpAddresses).Distinct();
         }
     }
 }
