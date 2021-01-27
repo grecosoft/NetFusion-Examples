@@ -39,6 +39,11 @@ namespace Demo.WebApi
                 //     config.AddPublisher<ExamplePublisher>();
                 //     config.AddEnricher<MachineNameEnricher>();
                 // })
+                
+                .InitPluginConfig<QueryDispatchConfig>(c =>
+                {
+                    c.AddFilter<TimeQueryFilter>();
+                })
 
                 .AddPlugin<InfraPlugin>()
                 .AddPlugin<AppPlugin>()
