@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using NetFusion.Bootstrap.Container;
 using NetFusion.Builder;
 using NetFusion.RabbitMQ.Plugin;
+using NetFusion.Serilog;
 
 namespace Demo.Subscriber
 {
@@ -17,7 +18,7 @@ namespace Demo.Subscriber
             IHost host = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.CompositeContainer(hostContext.Configuration)
+                    services.CompositeContainer(hostContext.Configuration, new SerilogExtendedLogger())
                         .AddRabbitMq()
                         .AddPlugin<HostPlugin>()
                         .Compose();
