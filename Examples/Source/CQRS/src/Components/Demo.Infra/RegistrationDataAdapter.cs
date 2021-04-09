@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Demo.Domain.Adapters;
 
 namespace Demo.Infra
@@ -31,7 +31,7 @@ namespace Demo.Infra
 
             _logger.LogDebug(responseBody);
 
-            var data = JsonConvert.DeserializeObject<AutoRegDataResponse>(responseBody);
+            var data = JsonSerializer.Deserialize<AutoRegDataResponse>(responseBody);
             return data.AutoInfo.Where(a => a.Year == forYear).ToArray();
         }
 
