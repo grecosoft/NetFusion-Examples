@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetFusion.Bootstrap.Container;
-using NetFusion.Builder;
 
 namespace Demo.WebApi
 {
@@ -42,8 +41,7 @@ namespace Demo.WebApi
         private static void SetupConfiguration(HostBuilderContext context, 
             IConfigurationBuilder builder)
         {
-            builder.AddAppSettings(context.HostingEnvironment);
-
+            
         }
     }
 }

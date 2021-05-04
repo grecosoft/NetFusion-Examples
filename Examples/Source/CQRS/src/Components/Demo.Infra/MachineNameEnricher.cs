@@ -6,12 +6,12 @@ using NetFusion.Messaging.Types.Contracts;
 
 namespace Demo.Infra
 {
-    public class MachineNameEnricher : MessageEnricher
+    public class MachineNameEnricher : IMessageEnricher
     {
-        public override Task EnrichAsync(IMessage message)
+        public Task EnrichAsync(IMessage message)
         {
             message.Attributes.SetStringValue("MachineName", Environment.MachineName);
-            return base.EnrichAsync(message);
+            return Task.CompletedTask;
         }
     }
 }

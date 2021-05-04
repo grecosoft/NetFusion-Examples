@@ -1,9 +1,9 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Demo.App.Repositories;
 using Demo.Domain.Entities;
 using MongoDB.Driver;
 using NetFusion.MongoDB;
-using Demo.Domain.Repositories;
 
 namespace Demo.Infra.Repositories
 {

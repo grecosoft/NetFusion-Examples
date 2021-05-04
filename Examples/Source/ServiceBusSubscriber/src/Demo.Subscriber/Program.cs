@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NetFusion.Azure.ServiceBus.Plugin;
+using NetFusion.Base.Logging;
 using NetFusion.Bootstrap.Container;
 using NetFusion.Builder;
 
@@ -18,7 +19,7 @@ namespace Demo.Subscriber
             IHost host = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.CompositeContainer(hostContext.Configuration)
+                    services.CompositeContainer(hostContext.Configuration, new NullExtendedLogger())
                         .AddAzureServiceBus()
                         .AddPlugin<HostPlugin>()
                         .Compose();

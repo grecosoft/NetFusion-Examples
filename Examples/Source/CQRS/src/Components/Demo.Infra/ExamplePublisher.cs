@@ -9,17 +9,17 @@ using NetFusion.Messaging.Types.Contracts;
 
 namespace Demo.Infra
 {
-    public class ExamplePublisher : MessagePublisher
+    public class ExamplePublisher : IMessagePublisher
     {
         private readonly ILogger<ExamplePublisher> _logger;
-        public override IntegrationTypes IntegrationType => IntegrationTypes.Internal;
+        public IntegrationTypes IntegrationType => IntegrationTypes.Internal;
 
         public ExamplePublisher(ILogger<ExamplePublisher> logger)
         {
             _logger = logger;
         }
 
-        public override Task PublishMessageAsync(IMessage message, CancellationToken cancellationToken)
+        public Task PublishMessageAsync(IMessage message, CancellationToken cancellationToken)
         {
             _logger.LogDebug($"Message Correlation ID ==> {message.GetCorrelationId()}");
             _logger.LogDebug(message.ToIndentedJson());

@@ -7,7 +7,6 @@ using Demo.App.Plugin;
 using Demo.Domain.Plugin;
 using Demo.Infra.Plugin;
 using Demo.WebApi.Plugin;
-using NetFusion.Base.Logging;
 using NetFusion.MongoDB.Plugin;
 using NetFusion.Serilog;
 using Serilog;

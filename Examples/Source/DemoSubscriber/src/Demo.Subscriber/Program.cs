@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NetFusion.Base.Logging;
 using NetFusion.Bootstrap.Container;
 using NetFusion.Builder;
 using Subscriber.Plugin;
@@ -18,7 +19,7 @@ namespace Subscriber
             IHost host = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.CompositeContainer(hostContext.Configuration)
+                    services.CompositeContainer(hostContext.Configuration, new NullExtendedLogger())
                         .AddPlugin<HostPlugin>()
                         .Compose();
                 })

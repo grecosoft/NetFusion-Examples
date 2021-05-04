@@ -1,4 +1,5 @@
-using Demo.Domain.Adapters;
+using Demo.App.Adapters;
+using Demo.Infra.Adapters;
 using Microsoft.Extensions.DependencyInjection;
 using NetFusion.Bootstrap.Plugins;
 

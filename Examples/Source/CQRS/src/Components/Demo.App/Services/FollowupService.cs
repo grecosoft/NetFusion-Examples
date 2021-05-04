@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using System.Threading.Tasks; 
-using Demo.Domain.Adapters;
+using System.Threading.Tasks;
+using Demo.App.Adapters;
 using Demo.Domain.Events;
 using Microsoft.Extensions.Logging;
 using NetFusion.Common.Extensions;

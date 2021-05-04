@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Demo.Domain.Adapters;
+using Demo.App.Adapters;
 using Demo.Domain.Entities;
 using Demo.Domain.Queries;
 using NetFusion.Messaging;

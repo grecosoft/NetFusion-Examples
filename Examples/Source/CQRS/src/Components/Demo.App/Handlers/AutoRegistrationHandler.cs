@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using Demo.Domain.Commands;
 using Demo.Domain.Events;
 using Demo.Domain.Entities;
-using Demo.Domain.Adapters;
 using System.Linq;
+using Demo.App.Adapters;
 using NetFusion.Messaging;
 
 namespace Demo.App.Handlers

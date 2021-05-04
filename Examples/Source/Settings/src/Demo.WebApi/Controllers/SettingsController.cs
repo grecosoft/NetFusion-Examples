@@ -14,7 +14,7 @@ namespace Demo.WebApi.Controllers
             _settings = settings;
         }
 
-        [HttpGet()]
+        [HttpGet]
         public IActionResult GetSettings()
         {
             return Ok(_settings);

@@ -7,12 +7,11 @@ namespace Core.Component.Plugin.Modules
 {
     public class NumberGeneratorModule : PluginModule
     {
-        public override void ScanPlugins(ITypeCatalog catalog)
+        public override void ScanForServices(ITypeCatalog catalog)
         {
             catalog.AsService<INumberGenerator>(
                 t => t.IsConcreteTypeDerivedFrom<INumberGenerator>(),
                 ServiceLifetime.Singleton);
-
         }
     }
 }

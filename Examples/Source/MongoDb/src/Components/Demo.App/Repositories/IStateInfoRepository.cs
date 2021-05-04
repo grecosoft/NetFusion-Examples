@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Demo.Domain.Entities;
 
-namespace Demo.Domain.Repositories
+namespace Demo.App.Repositories
 {
     public interface IStateInfoRepository
     {

@@ -9,11 +9,11 @@
     <ProjectReference Include="..\Components\Demo.Infra\Demo.Infra.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="3.3.11" />
-    <PackageReference Include="NetFusion.Base" Version="3.3.11" />
-    <PackageReference Include="NetFusion.Bootstrap" Version="3.3.11" />
-    <PackageReference Include="NetFusion.Builder" Version="3.3.11" />
-    <PackageReference Include="NetFusion.Serilog" Version="3.3.11" />
+    <PackageReference Include="NetFusion.Common" Version="9.9.57" />
+    <PackageReference Include="NetFusion.Base" Version="9.9.57" />
+    <PackageReference Include="NetFusion.Bootstrap" Version="9.9.57" />
+    <PackageReference Include="NetFusion.Builder" Version="9.9.57" />
+    <PackageReference Include="NetFusion.Serilog" Version="9.9.57" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
