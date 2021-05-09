@@ -23,5 +23,11 @@ namespace Demo.WebApi.Controllers
         {
             return _messaging.SendAsync(command);
         }
+        
+        [HttpPost("validate/customer")]
+        public Task ValidateCustomer([FromBody]ValidateCustomer command)
+        {
+            return _messaging.SendAsync(command);
+        }
     }
 }

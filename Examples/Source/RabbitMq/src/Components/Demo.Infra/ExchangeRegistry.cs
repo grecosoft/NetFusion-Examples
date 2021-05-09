@@ -11,7 +11,9 @@ namespace Demo.Infra
             DefineDirectExchange<PropertySold>("RealEstate", "testBus");
             DefineTopicExchange<AutoSaleCompleted>("CompletedAutoSales", "testBus");
             DefineFanoutExchange<TemperatureReading>("TemperatureReading", "testBus");
+            
             DefineWorkQueue<SendEmail>("GenerateAndSendEmail", "testBus");
+            DefineWorkQueueWithResponse<ValidateCustomer>("CustomerLookup", "testBus", "CustomerValidationResponses");
             
             DefineRpcQueue<CalculatePropertyTax>("TaxCalculations", "Business.Calcs.Taxes.Property", "testBus");
             DefineRpcQueue<CalculateAutoTax>("TaxCalculations", "Business.Calcs.Taxes.Auto", "testBus");
