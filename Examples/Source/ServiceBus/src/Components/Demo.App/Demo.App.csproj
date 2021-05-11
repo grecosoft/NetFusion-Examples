@@ -7,9 +7,9 @@
     <ProjectReference Include="..\Demo.Domain\Demo.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Azure.ServiceBus" Version="9.9.57" />
-    <PackageReference Include="NetFusion.Common" Version="9.9.57" />
-    <PackageReference Include="NetFusion.Base" Version="9.9.57" />
-    <PackageReference Include="NetFusion.Bootstrap" Version="9.9.57" />
+    <PackageReference Include="NetFusion.Azure.ServiceBus" Version="3.3.12" />
+    <PackageReference Include="NetFusion.Common" Version="3.3.12" />
+    <PackageReference Include="NetFusion.Base" Version="3.3.12" />
+    <PackageReference Include="NetFusion.Bootstrap" Version="3.3.12" />
   </ItemGroup>
 </Project>
