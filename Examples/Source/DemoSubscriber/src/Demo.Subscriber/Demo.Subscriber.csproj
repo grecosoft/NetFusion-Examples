@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
-    <PackageReference Include="NetFusion.Builder" Version="3.3.12" />
+    <PackageReference Include="NetFusion.Builder" Version="3.3.13" />
   </ItemGroup>
 
 

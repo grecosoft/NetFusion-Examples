@@ -2,6 +2,10 @@ using NetFusion.Messaging.Types;
 
 namespace Demo.Subscriber.Events
 {
+    /// <summary>
+    /// Domain event published by another Microservice to which
+    /// this service subscribes.
+    /// </summary>
     public class NewListing : DomainEvent
     {
         public string DataSource { get; set; }

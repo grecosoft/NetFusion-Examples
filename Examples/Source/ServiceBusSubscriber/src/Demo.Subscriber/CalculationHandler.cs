@@ -9,6 +9,10 @@ namespace Demo.Subscriber
 {
     public class CalculationHandler : IMessageConsumer
     {
+        /// <summary>
+        /// This is an example of a command handler sent from another Microservice
+        /// expecting a near immediate reply. 
+        /// </summary>
         [RpcQueueSubscription("netfusion-demo", "BizCalculations")]
         public ValueRange OnCalRange(CalculateRange command)
         {
