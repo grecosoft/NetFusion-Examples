@@ -51,6 +51,49 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ScannedServices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/generators/numbers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"generators",
+								"numbers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceRegistration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/registrations/valid/numbers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"registrations",
+								"valid",
+								"numbers"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -528,6 +571,37 @@
 					"response": []
 				},
 				{
+					"name": "WorkqueueWithResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Cheshire\",\n    \"age\": 45,\n    \"address\": \"334 Swamp Lane, Somepace WV 26201\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/sampleworkqueue/validate/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"sampleworkqueue",
+								"validate",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "RPC-1",
 					"request": {
 						"method": "POST",
@@ -922,6 +996,132 @@
 								"api",
 								"StateInfo",
 								"CT"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Redis",
+			"item": [
+				{
+					"name": "PublishEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"partNumber\": \"P234235\",\n    \"state\": \"CT\",\n    \"quantity\": 60,\n    \"neededBy\": \"2021-12-12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/publisherexample/order/submitted",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"publisherexample",
+								"order",
+								"submitted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SetAddData",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"Volvo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/databaseexample/set/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"databaseexample",
+								"set",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SetPopData Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/databaseexample/set/pop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"databaseexample",
+								"set",
+								"pop"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "GetSettings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/settings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"settings"
 							]
 						}
 					},
