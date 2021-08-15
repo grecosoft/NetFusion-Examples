@@ -64,26 +64,19 @@ services:
 
 volumes:
     rabbit_data:
-        external:
-            name: dev-rabbit_data
+        name: dev-rabbit_data
     rabbit_logs:
-        external:
-            name: dev-rabbit_logs
+        name: dev-rabbit_logs
     redis_data:
-        external:
-            name: dev-rabbit_data
+        name: dev-rabbit_data
     mongo_data:
-        external:
-            name: dev-mongo_data
+        name: dev-mongo_data
     mongo_logs:
-        external:
-            name: dev-mongo_logs
+        name: dev-mongo_logs
     sql_server_data:
-        external:
-            name: dev-sql-server_data
+        name: dev-sql-server_data
     seq_data:
-        external:
-            name: dev-seq_data
+        name: dev-seq_data
 
 networks:
   default:
