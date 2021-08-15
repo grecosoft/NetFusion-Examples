@@ -23,7 +23,7 @@ namespace Demo.WebApi.Controllers
         public IActionResult GetPriceHistoryEvents(int listingId)
         {
             var historyResources = GetPricingHistory().Where(h => h.ListingId == listingId)
-                .Select(h => h.AsResource());
+                .Select(h => h.AsResource()).ToArray();
             
             var resource = HalResource.New(r => r.EmbedResources(historyResources, "price-history"));
              
