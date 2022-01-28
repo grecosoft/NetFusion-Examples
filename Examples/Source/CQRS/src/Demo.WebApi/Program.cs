@@ -69,7 +69,7 @@ namespace Demo.WebApi
                 .Enrich.WithCorrelationId()
                 .Enrich.WithHostIdentity(WebApiPlugin.HostId, WebApiPlugin.HostName)
                 
-                .WriteTo.ColoredConsole();
+                .WriteTo.Console();
 
             if (! string.IsNullOrEmpty(seqUrl))
             {
