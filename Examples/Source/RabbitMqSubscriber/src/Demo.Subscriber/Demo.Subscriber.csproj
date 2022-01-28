@@ -9,9 +9,9 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
-    <PackageReference Include="NetFusion.Builder" Version="7.0.5" />
-    <PackageReference Include="NetFusion.RabbitMQ" Version="7.0.5" />
-    <PackageReference Include="NetFusion.Serilog" Version="7.0.5" />
+    <PackageReference Include="NetFusion.Builder" Version="6.0.17" />
+    <PackageReference Include="NetFusion.RabbitMQ" Version="6.0.17" />
+    <PackageReference Include="NetFusion.Serilog" Version="6.0.17" />
   </ItemGroup>
 
   <ItemGroup>

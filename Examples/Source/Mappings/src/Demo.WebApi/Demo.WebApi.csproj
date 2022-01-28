@@ -9,12 +9,12 @@
     <ProjectReference Include="..\Components\Demo.Infra\Demo.Infra.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.5" />
-    <PackageReference Include="NetFusion.Base" Version="7.0.5" />
-    <PackageReference Include="NetFusion.Bootstrap" Version="7.0.5" />
-    <PackageReference Include="NetFusion.Builder" Version="7.0.5" />
-    <PackageReference Include="NetFusion.Mapping" Version="7.0.5" />
-    <PackageReference Include="NetFusion.Serilog" Version="7.0.5" />
+    <PackageReference Include="NetFusion.Common" Version="6.0.17" />
+    <PackageReference Include="NetFusion.Base" Version="6.0.17" />
+    <PackageReference Include="NetFusion.Bootstrap" Version="6.0.17" />
+    <PackageReference Include="NetFusion.Builder" Version="6.0.17" />
+    <PackageReference Include="NetFusion.Mapping" Version="6.0.17" />
+    <PackageReference Include="NetFusion.Serilog" Version="6.0.17" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
     <PackageReference Include="TinyMapper" Version="3.0.3" />
   </ItemGroup>

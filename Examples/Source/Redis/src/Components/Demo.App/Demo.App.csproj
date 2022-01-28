@@ -7,8 +7,8 @@
     <ProjectReference Include="..\Demo.Domain\Demo.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.5" />
-    <PackageReference Include="NetFusion.Base" Version="7.0.5" />
-    <PackageReference Include="NetFusion.Bootstrap" Version="7.0.5" />
+    <PackageReference Include="NetFusion.Common" Version="6.0.17" />
+    <PackageReference Include="NetFusion.Base" Version="6.0.17" />
+    <PackageReference Include="NetFusion.Bootstrap" Version="6.0.17" />
   </ItemGroup>
 </Project>
