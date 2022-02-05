@@ -12,6 +12,7 @@ namespace Core.Component.Plugin.Modules
             catalog.AsService<INumberGenerator>(
                 t => t.IsConcreteTypeDerivedFrom<INumberGenerator>(),
                 ServiceLifetime.Singleton);
+
         }
     }
 }

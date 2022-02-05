@@ -5,6 +5,6 @@ namespace Core.Component.Plugin
 {
     public interface ICheckValidRange : IPluginModuleService
     {
-        Tuple<int, int> IsValidRange(int value);
+        Tuple<int, int>? IsValidRange(int value);
     }
 }

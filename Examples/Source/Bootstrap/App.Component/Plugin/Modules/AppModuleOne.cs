@@ -1,37 +1,46 @@
-using System;
-using System.Threading.Tasks;
 using App.Component.Plugin.Configs;
 using Core.Component;
 using Core.Component.Plugin;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using NetFusion.Base;
 using NetFusion.Bootstrap.Plugins;
 
 namespace App.Component.Plugin.Modules
 {
     public class AppModuleOne : PluginModule
     {
-        public ICheckValidRange ValidRanges { get; private set; }
-        
+        public ICheckValidRange? ValidRanges { get; private set; } 
+
         public override void Initialize()
         {
-            Console.WriteLine($"Initializing: {GetType().Name}");
+            NfExtensions.Logger.Log<PluginModule>(
+                LogLevel.Information, $"Initializing: {GetType().Name}");
+
             var config = Context.Plugin.GetConfig<HelloWorldConfig>();
 
-            if (! string.IsNullOrEmpty(config.Message))
+            if (!string.IsNullOrEmpty(config.Message))
             {
-                Console.WriteLine(
-                    $"The host application with the name of: {Context.AppHost.Name} says Hello {config.Message}");
+                NfExtensions.Logger.Log<AppModuleOne>(LogLevel.Warning,
+                  $"The host application with the name of: {Context.AppHost.Name} says Hello {config.Message}");
             }
         }
 
         public override void Configure()
         {
-            Console.WriteLine($"Configuring: {GetType().Name}");
-            
+            if (ValidRanges == null)
+            {
+                throw new ArgumentNullException(nameof(ValidRanges));
+            }
+
+            NfExtensions.Logger.Log<PluginModule>(
+               LogLevel.Information, $"Configuring: {GetType().Name}");
+
             var range = ValidRanges.IsValidRange(102);
             if (range != null)
             {
-                Console.WriteLine($"102 is value range[{range.Item1}, {range.Item2}]");
+                NfExtensions.Logger.Log<AppModuleOne>(
+                    LogLevel.Warning, $"102 is value range[{range.Item1}, {range.Item2}]");
             }
         }
 
@@ -39,22 +48,28 @@ namespace App.Component.Plugin.Modules
         {
             services.AddSingleton<IValidNumbers, ValidNumberComponent>();
         }
-        
+
         protected override Task OnStartModuleAsync(IServiceProvider services)
         {
-            Console.WriteLine($"Starting: {GetType().Name}");
+            NfExtensions.Logger.Log<PluginModule>(
+                    LogLevel.Warning, $"Starting: {GetType().Name}");
+
             return base.OnStartModuleAsync(services);
         }
 
         protected override Task OnRunModuleAsync(IServiceProvider services)
         {
-            Console.WriteLine($"Running: {GetType().Name}");
+            NfExtensions.Logger.Log<PluginModule>(
+                    LogLevel.Warning, $"Running: {GetType().Name}");
+
             return base.OnRunModuleAsync(services);
         }
 
         protected override Task OnStopModuleAsync(IServiceProvider services)
         {
-            Console.WriteLine($"Stopping: {GetType().Name}");
+            NfExtensions.Logger.Log<PluginModule>(
+                    LogLevel.Warning, $"Stopping: {GetType().Name}");
+
             return base.OnStopModuleAsync(services);
         }
     }
