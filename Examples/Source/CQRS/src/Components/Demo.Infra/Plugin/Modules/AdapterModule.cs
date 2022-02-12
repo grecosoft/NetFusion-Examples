@@ -10,7 +10,6 @@ namespace Demo.Infra.Plugin.Modules
         public override void RegisterServices(IServiceCollection services)
         {
             services.AddSingleton<IRegistrationDataAdapter, RegistrationDataAdapter>();
-            services.AddSingleton<ISalesDataAdapter, SalesDataAdapter>();
         }
     }
 }

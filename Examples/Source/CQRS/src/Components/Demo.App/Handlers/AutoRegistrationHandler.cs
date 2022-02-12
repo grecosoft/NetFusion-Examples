@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
 using Demo.Domain.Commands;
-using Demo.Domain.Events;
 using Demo.Domain.Entities;
 using System.Linq;
-using Demo.App.Adapters;
 using NetFusion.Messaging;
+using Demo.App.Adapters;
+using Demo.Domain.Events;
 
 namespace Demo.App.Handlers
 {
@@ -18,8 +18,8 @@ namespace Demo.App.Handlers
             IMessagingService messaging,
             IRegistrationDataAdapter adapter)
         {
-            _messaging = messaging;
              _adapter = adapter;
+            _messaging = messaging;
         }
 
         [InProcessHandler]
@@ -54,7 +54,7 @@ namespace Demo.App.Handlers
         }
 
         private Task NotifyPassedRegistration(
-            RegistrationStatus status, 
+            RegistrationStatus status,
             RegisterAutoCommand command)
         {
             if (status.IsSuccess)
@@ -68,13 +68,13 @@ namespace Demo.App.Handlers
         }
 
         private Task NotifyFailedRegistration(
-            RegistrationStatus status, 
+            RegistrationStatus status,
             RegisterAutoCommand command)
         {
             if (!status.IsSuccess)
             {
                 var failedEvent = new RegistrationFailedEvent(
-                    status.ReferenceNumber, 
+                    status.ReferenceNumber,
                     command.Make, command.Model,
                     command.Year);
 

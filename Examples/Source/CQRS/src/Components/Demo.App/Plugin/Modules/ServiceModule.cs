@@ -8,7 +8,7 @@ namespace Demo.App.Plugin.Modules
     {
         public override void ScanForServices(ITypeCatalog catalog)
         {
-            catalog.AsImplementedInterface("Service", ServiceLifetime.Scoped);
+           // catalog.AsImplementedInterface("Service", ServiceLifetime.Scoped);
         }
     }
 }

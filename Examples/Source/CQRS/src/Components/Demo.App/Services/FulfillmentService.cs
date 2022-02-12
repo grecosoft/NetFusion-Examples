@@ -16,8 +16,7 @@ namespace Demo.App.Services
         }
 
         [InProcessHandler]
-        public void FinishRegistration(
-            RegistrationPassedEvent passedEvent)
+        public void FinishRegistration(RegistrationPassedEvent passedEvent)
         {
             _logger.LogDebug("Reference Number: {refNum}",
                  passedEvent.ReferenceNumber);

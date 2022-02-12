@@ -1,82 +1,128 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using Demo.App.Plugin;
+using Demo.Domain.Plugin;
+using Demo.Infra;
+using Demo.Infra.Plugin;
 using Demo.WebApi.Plugin;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using NetFusion.Bootstrap.Container;
+using NetFusion.Builder;
+using NetFusion.Messaging.Plugin;
+using NetFusion.Messaging.Plugin.Configs;
 using NetFusion.Serilog;
 using Serilog;
 using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
+using System.Diagnostics;
 
-namespace Demo.WebApi
-{
-    // Initializes the application's configuration and logging then delegates 
-    // to the Startup class to initialize HTTP pipeline related settings.
-    public class Program
+
+// Allows changing the minimum log level of the service at runtime.
+LogLevelControl LogLevelControl = new();
+LogLevelControl.SetMinimumLevel(LogLevel.Trace);
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureAppConfiguration(SetupConfiguration);
+builder.Host.ConfigureLogging(SetupLogging);
+builder.Host.UseSerilog();
+
+builder.Services.AddCors();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddControllers();
+
+// Register Log Level Control so it can be injected into
+// a service at runtime to change the level.
+builder.Services.AddLogLevelControl(LogLevelControl);
+
+// Add Plugins to the Composite-Container:
+builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger())
+    .AddMessaging()
+
+    //.InitPluginConfig<MessageDispatchConfig>(config =>
+    //{
+    //    config.ClearPublishers();
+    //    config.AddPublisher<ExamplePublisher>();
+    //})
+
+    .InitPluginConfig<MessageDispatchConfig>(config =>
     {
-        public static async Task Main(string[] args)
-        {
-            IHost webHost = BuildWebHost(args);
-            
-            var compositeApp = webHost.Services.GetRequiredService<ICompositeApp>();
-            var lifetime = webHost.Services.GetRequiredService<IHostApplicationLifetime>();
+        config.ClearPublishers();
+        config.AddEnricher<MachineNameEnricher>();
+    })
 
-            lifetime.ApplicationStopping.Register(() =>
-            {
-                compositeApp.Stop();
-            });
-                  
-            await compositeApp.StartAsync();
-            await webHost.RunAsync();    
-        }
+    .AddPlugin<InfraPlugin>()
+    .AddPlugin<AppPlugin>()
+    .AddPlugin<DomainPlugin>()
+    .AddPlugin<WebApiPlugin>()
+    .Compose();
 
-        private static IHost BuildWebHost(string[] args) 
-        {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(SetupConfiguration)
-                .ConfigureLogging(SetupLogging)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                })
-                .UseSerilog()
-                .Build();
-        }
 
-        private static void SetupConfiguration(HostBuilderContext context, 
-            IConfigurationBuilder builder)
-        {
-            
-        }
-        private static void SetupLogging(HostBuilderContext context, 
+
+var app = builder.Build();
+
+string viewerUrl = app.Configuration.GetValue<string>("Netfusion:ViewerUrl");
+if (!string.IsNullOrWhiteSpace(viewerUrl))
+{
+    app.UseCors(builder => builder.WithOrigins(viewerUrl)
+        .AllowAnyMethod()
+        .AllowCredentials()
+        .WithExposedHeaders("WWW-Authenticate", "resource-404")
+        .AllowAnyHeader());
+}
+
+app.UseSerilogRequestLogging();
+
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
+
+
+// Reference the Composite-Application to start the plugins then
+// start the web application.
+var compositeApp = app.Services.GetRequiredService<ICompositeApp>();
+var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
+
+lifetime.ApplicationStopping.Register(() =>
+{
+    compositeApp.Stop();
+    Log.CloseAndFlush();
+});
+
+await compositeApp.StartAsync();
+await app.RunAsync();
+
+
+void SetupConfiguration(HostBuilderContext context, IConfigurationBuilder builder)
+{
+
+}
+
+
+void SetupLogging(HostBuilderContext context,
             ILoggingBuilder builder)
-        {
-            var seqUrl = context.Configuration.GetValue<string>("logging:seqUrl");
+{
+    var seqUrl = context.Configuration.GetValue<string>("logging:seqUrl");
 
-            // Send any Serilog configuration issue logs to console.
-            Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
-            Serilog.Debugging.SelfLog.Enable(Console.Error);
-            
-            var logConfig = new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    // Send any Serilog configuration issues logs to console.
+    Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
+    Serilog.Debugging.SelfLog.Enable(Console.Error);
 
-                .Enrich.FromLogContext()
-                .Enrich.WithCorrelationId()
-                .Enrich.WithHostIdentity(WebApiPlugin.HostId, WebApiPlugin.HostName)
-                
-                .WriteTo.Console();
+    var logConfig = new LoggerConfiguration()
+        .MinimumLevel.ControlledBy(LogLevelControl.Switch)
+        .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
 
-            if (! string.IsNullOrEmpty(seqUrl))
-            {
-                logConfig.WriteTo.Seq(seqUrl);
-            }
-            
-            Log.Logger = logConfig.CreateLogger();
-        }
+        .Enrich.FromLogContext()
+        .Enrich.WithCorrelationId()
+        .Enrich.WithHostIdentity(WebApiPlugin.HostId, WebApiPlugin.HostName);
+
+    logConfig.WriteTo.Console(theme: AnsiConsoleTheme.Literate);
+
+    if (!string.IsNullOrEmpty(seqUrl))
+    {
+        logConfig.WriteTo.Seq(seqUrl);
     }
+
+    Log.Logger = logConfig.CreateLogger();
+
+    builder.ClearProviders();
+    builder.AddSerilog(Log.Logger);
 }

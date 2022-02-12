@@ -37,10 +37,9 @@ namespace Demo.WebApi.Controllers
 
             return Ok(status);
         }
-        
+
         [HttpPost("auto")]
-        public async Task<IActionResult> RegisterAuto(
-            [FromBody] AutoRegistrationModel model)
+        public async Task<IActionResult> RegisterAuto([FromBody] AutoRegistrationModel model)
         {
             var command = new RegisterAutoCommand(
                 model.Make,

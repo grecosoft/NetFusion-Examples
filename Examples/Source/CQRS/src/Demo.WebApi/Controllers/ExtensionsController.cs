@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Demo.Domain.Events;
 using Microsoft.AspNetCore.Mvc;
 using NetFusion.Messaging;

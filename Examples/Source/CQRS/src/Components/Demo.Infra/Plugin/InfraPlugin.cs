@@ -11,7 +11,7 @@ namespace Demo.Infra.Plugin
 
         public InfraPlugin() {
             AddModule<RepositoryModule>();
-            AddModule<AdapterModule>(); 
+            AddModule<AdapterModule>();     // Add this line
 
             Description = "Plugin component containing the application infrastructure.";
         }

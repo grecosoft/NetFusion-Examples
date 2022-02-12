@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using Demo.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace Demo.App.Adapters
 {
