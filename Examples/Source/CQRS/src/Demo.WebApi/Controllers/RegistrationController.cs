@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Demo.Domain.Commands;
 using Demo.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;

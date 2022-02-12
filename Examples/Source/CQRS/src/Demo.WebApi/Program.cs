@@ -12,11 +12,12 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System.Diagnostics;
+using Destructurama;
 
 
 // Allows changing the minimum log level of the service at runtime.
-LogLevelControl LogLevelControl = new();
-LogLevelControl.SetMinimumLevel(LogLevel.Trace);
+LogLevelControl logLevelControl = new();
+logLevelControl.SetMinimumLevel(LogLevel.Trace);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +31,7 @@ builder.Services.AddControllers();
 
 // Register Log Level Control so it can be injected into
 // a service at runtime to change the level.
-builder.Services.AddLogLevelControl(LogLevelControl);
+builder.Services.AddLogLevelControl(logLevelControl);
 
 // Add Plugins to the Composite-Container:
 builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger())
@@ -47,6 +48,11 @@ builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLo
         config.ClearPublishers();
         config.AddEnricher<MachineNameEnricher>();
     })
+    
+    .InitPluginConfig<QueryDispatchConfig>(c =>
+    {
+        c.AddFilter<TimeQueryFilter>();
+    })
 
     .AddPlugin<InfraPlugin>()
     .AddPlugin<AppPlugin>()
@@ -61,7 +67,7 @@ var app = builder.Build();
 string viewerUrl = app.Configuration.GetValue<string>("Netfusion:ViewerUrl");
 if (!string.IsNullOrWhiteSpace(viewerUrl))
 {
-    app.UseCors(builder => builder.WithOrigins(viewerUrl)
+    app.UseCors(cors => cors.WithOrigins(viewerUrl)
         .AllowAnyMethod()
         .AllowCredentials()
         .WithExposedHeaders("WWW-Authenticate", "resource-404")
@@ -91,14 +97,14 @@ await compositeApp.StartAsync();
 await app.RunAsync();
 
 
-void SetupConfiguration(HostBuilderContext context, IConfigurationBuilder builder)
+void SetupConfiguration(HostBuilderContext context, IConfigurationBuilder configBuilder)
 {
 
 }
 
 
 void SetupLogging(HostBuilderContext context,
-            ILoggingBuilder builder)
+            ILoggingBuilder logBuilder)
 {
     var seqUrl = context.Configuration.GetValue<string>("logging:seqUrl");
 
@@ -107,8 +113,9 @@ void SetupLogging(HostBuilderContext context,
     Serilog.Debugging.SelfLog.Enable(Console.Error);
 
     var logConfig = new LoggerConfiguration()
-        .MinimumLevel.ControlledBy(LogLevelControl.Switch)
+        .MinimumLevel.ControlledBy(logLevelControl.Switch)
         .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+        .Destructure.UsingAttributes()
 
         .Enrich.FromLogContext()
         .Enrich.WithCorrelationId()
@@ -123,6 +130,6 @@ void SetupLogging(HostBuilderContext context,
 
     Log.Logger = logConfig.CreateLogger();
 
-    builder.ClearProviders();
-    builder.AddSerilog(Log.Logger);
+    logBuilder.ClearProviders();
+    logBuilder.AddSerilog(Log.Logger);
 }
