@@ -9,6 +9,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System.Diagnostics;
+using NetFusion.Web.Mvc.Extensions;
 
 
 // Allows changing the minimum log level of the service at runtime.
@@ -37,8 +38,6 @@ builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLo
     .AddPlugin<WebApiPlugin>()
     .Compose();
 
-
-
 var app = builder.Build();
 
 string viewerUrl = app.Configuration.GetValue<string>("Netfusion:ViewerUrl");
@@ -56,6 +55,8 @@ app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
+
+app.MapHealthCheck();
 app.MapControllers();
 
 
@@ -71,6 +72,9 @@ lifetime.ApplicationStopping.Register(() =>
 });
 
 await compositeApp.StartAsync();
+
+
+
 await app.RunAsync();
 
 
