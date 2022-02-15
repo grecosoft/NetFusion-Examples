@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Demo.App.Services;
@@ -21,20 +22,16 @@ namespace Demo.App.Plugin.Modules
 
         public Task CheckModuleAspectsAsync(ModuleHealthCheck healthCheck)
         {
-            switch (_runningServices.Count)
+            HealthAspectCheck aspect = _runningServices.Count switch
             {
-                case <= 4:
-                    healthCheck.RecordAspect(HealthAspectCheck.ForHealthy("RunningServices",
-                        _runningServices.Count.ToString()));
-                    break;
-                case <= 8:
-                    healthCheck.RecordAspect(HealthAspectCheck.ForDegraded("RunningServices",
-                        _runningServices.Count.ToString()));
-                    break;
-                case > 8:
-                    healthCheck.RecordAspect(HealthAspectCheck.ForUnhealthy("RunningServices",
-                        _runningServices.Count.ToString()));
-                    break;
+                <= 4 => HealthAspectCheck.ForHealthy("Running-Services", _runningServices.Count.ToString()),
+                <= 8 => HealthAspectCheck.ForDegraded("Running-Services", _runningServices.Count.ToString()),
+                > 8 => HealthAspectCheck.ForUnhealthy("Running-Services", _runningServices.Count.ToString())
+            };
+
+            if (aspect != null)
+            {
+                healthCheck.RecordAspect(aspect);
             }
 
             return Task.CompletedTask;
@@ -48,6 +45,11 @@ namespace Demo.App.Plugin.Modules
         public string RemoveRunningService()
         {
             return _runningServices.TryPop(out var serviceId) ? serviceId : null;
+        }
+
+        protected override Task OnStartModuleAsync(IServiceProvider services)
+        {
+            return Task.Delay(TimeSpan.FromSeconds(20));
         }
     }
 }
