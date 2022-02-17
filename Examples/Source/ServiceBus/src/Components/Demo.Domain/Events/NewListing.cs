@@ -14,5 +14,6 @@ namespace Demo.Domain.Events
         public string Realtor { get; set; }
         public int SquareFeet { get; set; }
         public string ZipCode { get; set; }
+        public string Zip { get; set; }
     }
 }

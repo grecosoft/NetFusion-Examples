@@ -9,19 +9,15 @@ namespace Demo.Subscriber
 {
     public class AutoProcessing : IMessageConsumer
     {
-        /// <summary>
-        /// Example of a Command handler subscribed to the car-fax-report
-        /// queue on the netfussion-demo namespace.
-        /// </summary>
         [QueueSubscription("netfusion-demo", "car-fax-report")]
-        public CarFaxUpdateResult OnUpdateReport(UpdateCarFaxReport command)
+        public async Task<CarFaxUpdateResult> OnUpdateReport(UpdateCarFaxReport command)
         {
             Console.WriteLine(command.ToIndentedJson());
 
             var reportId = Guid.NewGuid().ToString();
+
+            await Task.Delay(TimeSpan.FromSeconds(10));
             
-            // This response will be sent back to the caller if it specified
-            // a corresponding reply queue when sending the command.
             return new CarFaxUpdateResult
             {
                 ReportId = reportId,
