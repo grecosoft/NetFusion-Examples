@@ -13,29 +13,36 @@ using WebApiHost.Plugin;
 
 var builder = WebApplication.CreateBuilder(args);
 
+InitializeLogger(builder.Configuration);
 
+builder.Host.ConfigureAppConfiguration(SetupConfiguration);
 builder.Host.ConfigureLogging(SetupLogging);
 builder.Host.UseSerilog();
 
-
 builder.Services.AddControllers();
 
-
-// Add Plugins to the Composite-Container:
-builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger()) 
-    .AddPlugin<CorePlugin>()
-    .AddPlugin<AppPlugin>()
-    .AddPlugin<WebApiPlugin>()
-    .InitPluginConfig((HelloWorldConfig config) => config.SetMessage("is anyone home?"))
-    .Compose();
-
+try
+{
+    // Add Plugins to the Composite-Container:
+    builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger()) 
+        .AddPlugin<CorePlugin>()
+        .AddPlugin<AppPlugin>()
+        .AddPlugin<WebApiPlugin>()
+        .InitPluginConfig((HelloWorldConfig config) => config.SetMessage("is anyone home?"))
+        .Compose();
+}
+catch
+{
+    Log.CloseAndFlush();
+}
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.UseSerilogRequestLogging();     
+app.UseSerilogRequestLogging();
 
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthorization();
 app.MapControllers();
 
 // Reference the Composite-Application to start the plugins then
@@ -53,13 +60,9 @@ await compositeApp.StartAsync();
 await app.RunAsync();
 
 
-
-static void SetupLogging(HostBuilderContext context,
-            ILoggingBuilder builder)
+void InitializeLogger(IConfiguration configuration)
 {
-    var seqUrl = context.Configuration.GetValue<string>("logging:seqUrl");
-
-    // Send any Serilog configuration issue logs to console.
+    // Send any Serilog configuration issues logs to console.
     Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
     Serilog.Debugging.SelfLog.Enable(Console.Error);
 
@@ -73,14 +76,22 @@ static void SetupLogging(HostBuilderContext context,
 
     logConfig.WriteTo.Console(theme: AnsiConsoleTheme.Literate);
 
+    var seqUrl = configuration.GetValue<string>("logging:seqUrl");
     if (!string.IsNullOrEmpty(seqUrl))
     {
         logConfig.WriteTo.Seq(seqUrl);
     }
 
     Log.Logger = logConfig.CreateLogger();
+}
 
+void SetupConfiguration(HostBuilderContext context, IConfigurationBuilder configBuilder)
+{
+    
+}
+
+static void SetupLogging(HostBuilderContext context, ILoggingBuilder builder)
+{
     builder.ClearProviders();
     builder.AddSerilog(Log.Logger);
-
 }
