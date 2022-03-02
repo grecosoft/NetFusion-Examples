@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Demo.Domain.Entities;
 using Demo.Domain.Queries;
 using Microsoft.AspNetCore.Mvc;

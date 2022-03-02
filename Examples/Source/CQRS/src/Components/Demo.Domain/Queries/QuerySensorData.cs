@@ -14,6 +14,5 @@ namespace Demo.Domain.Queries
         }
 
         public DateTime CurrentDate { get; set; }
-        public string Message { get; set; }
     }
 }

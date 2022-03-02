@@ -6,6 +6,7 @@ using Demo.App.Adapters;
 using Demo.Domain.Entities;
 using Microsoft.Extensions.Logging;
 
+
 namespace Demo.Infra.Adapters
 {
     public class RegistrationDataAdapter : IRegistrationDataAdapter
@@ -32,7 +33,9 @@ namespace Demo.Infra.Adapters
 
             _logger.LogDebug(responseBody);
 
-            var data = JsonSerializer.Deserialize<AutoRegDataResponse>(responseBody);
+            var data = JsonSerializer.Deserialize<AutoRegDataResponse>(responseBody, 
+                new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
             return data.AutoInfo.Where(a => a.Year == forYear).ToArray();
         }
 

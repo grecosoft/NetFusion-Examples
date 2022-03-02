@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 using Demo.App.Adapters;
 using Demo.Domain.Events;
 using Microsoft.Extensions.Logging;
@@ -23,8 +23,7 @@ namespace Demo.App.Services
         }
 
         [InProcessHandler]
-        public async Task CheckSimilarModel(
-            RegistrationFailedEvent failedEvent)
+        public async Task CheckSimilarModel(RegistrationFailedEvent failedEvent)
         {
             if (failedEvent.Make == "Yugo")
             {

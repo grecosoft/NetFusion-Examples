@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Demo.Domain.Queries;
 using Microsoft.AspNetCore.Mvc;
 using NetFusion.Messaging;
@@ -18,7 +17,7 @@ namespace Demo.WebApi.Controllers
         }
 
         [HttpGet("devices/{deviceId}/data")]
-        public async Task<IActionResult> ReadSensorData([FromQuery]string deviceId)
+        public async Task<IActionResult> ReadSensorData([FromRoute]string deviceId)
         {
             var query = new QuerySensorData(deviceId);
             var reading = await _messaging.DispatchAsync(query);

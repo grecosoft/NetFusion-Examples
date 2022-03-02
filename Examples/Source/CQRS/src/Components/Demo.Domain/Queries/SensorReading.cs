@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
+using Destructurama.Attributed;
 using NetFusion.Base.Entity;
 
 namespace Demo.Domain.Queries
@@ -14,7 +15,7 @@ namespace Demo.Domain.Queries
         public double MinValue { get; set; }
         public double MaxValue { get; set; }
 
-        [IgnoreDataMember]
+        [NotLogged, JsonIgnore]
         public IEntityAttributes Attributes { get; }
 
         public IDictionary<string, object> AttributeValues

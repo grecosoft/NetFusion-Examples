@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Demo.Domain.Events;
 using Microsoft.AspNetCore.Mvc;
 using NetFusion.Messaging;
@@ -19,7 +18,7 @@ namespace Demo.WebApi.Controllers
         [HttpGet ("new-customer")]
         public Task TestPublisher()
         {
-            var registration = new RegistrationDomainEvent("Lisa", "Smith");
+            var registration = new NewCustomerDomainEvent("Lisa", "Smith");
             return _messaging.PublishAsync(registration);
         }
     }

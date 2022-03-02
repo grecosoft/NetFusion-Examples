@@ -32,7 +32,9 @@ namespace Demo.Infra.Adapters
 
             _logger.LogDebug(responseBody);
 
-            var data = JsonSerializer.Deserialize<InventoryResponse>(responseBody);
+            var data = JsonSerializer.Deserialize<InventoryResponse>(responseBody, 
+                new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            
             return data.SalesInfo.Where(s => s.Make == make && s.Year == year).ToArray();
         }
 

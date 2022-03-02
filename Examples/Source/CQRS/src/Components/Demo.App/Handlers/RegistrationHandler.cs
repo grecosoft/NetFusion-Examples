@@ -23,7 +23,7 @@ namespace Demo.App.Handlers
             // TODO:  Code calling Repositories, Domain Entity, and Services...
 
             return new RegistrationStatus {
-                IsSuccess = command.FirstName != "Vern",
+                IsSuccess = command.FirstName != "Forest",
                 ReferenceNumber = Guid.NewGuid().ToString(),
                 DateAccountActive = DateTime.UtcNow.AddDays(2)
             };

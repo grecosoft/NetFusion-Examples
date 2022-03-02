@@ -1128,6 +1128,74 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "HealthChecks",
+			"item": [
+				{
+					"name": "AddService",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/health-monitor/services/Service1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"health-monitor",
+								"services",
+								"Service1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetHealthCheck",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/mgt/health-Check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"mgt",
+								"health-Check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveService",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/health-monitor/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"health-monitor",
+								"services"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

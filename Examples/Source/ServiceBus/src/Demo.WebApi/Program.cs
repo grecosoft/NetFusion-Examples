@@ -1,84 +1,100 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Demo.WebApi.Plugin;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NetFusion.Bootstrap.Container;
+﻿using NetFusion.Bootstrap.Container;
+using NetFusion.Builder;
 using NetFusion.Serilog;
 using Serilog;
 using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
+using System.Diagnostics;
+using Demo.App.Plugin;
+using Demo.Domain.Plugin;
+using Demo.Infra.Plugin;
+using Demo.WebApi.Plugin;
+using NetFusion.Azure.ServiceBus.Plugin;
 
-namespace Demo.WebApi
+
+var builder = WebApplication.CreateBuilder(args);
+
+InitializeLogger(builder.Configuration);
+
+builder.Host.ConfigureAppConfiguration(SetupConfiguration);
+builder.Host.ConfigureLogging(SetupLogging);
+builder.Host.UseSerilog();
+
+builder.Services.AddControllers();
+
+try
 {
-    // Initializes the application's configuration and logging then delegates 
-    // to the Startup class to initialize HTTP pipeline related settings.
-    public class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            IHost webHost = BuildWebHost(args);
-            
-            var compositeApp = webHost.Services.GetRequiredService<ICompositeApp>();
-            var lifetime = webHost.Services.GetRequiredService<IHostApplicationLifetime>();
+    // Add Plugins to the Composite-Container:
+    builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger())
+        .AddAzureServiceBus()
 
-            lifetime.ApplicationStopping.Register(() =>
-            {
-                compositeApp.Stop();
-                Log.CloseAndFlush();
-            });
+        .AddPlugin<InfraPlugin>()
+        .AddPlugin<AppPlugin>()
+        .AddPlugin<DomainPlugin>()
+        .AddPlugin<WebApiPlugin>()
+        .Compose();
+}
+catch
+{
+    Log.CloseAndFlush();
+}
+
+var app = builder.Build();
+
+app.UseSerilogRequestLogging();
+
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
+
+// Reference the Composite-Application to start the plugins then
+// start the web application.
+var compositeApp = app.Services.GetRequiredService<ICompositeApp>();
+var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
+
+lifetime.ApplicationStopping.Register(() =>
+{
+    compositeApp.Stop();
+    Log.CloseAndFlush();
+});
                   
-            await compositeApp.StartAsync();
-            await webHost.RunAsync();    
-        }
+await compositeApp.StartAsync();
+await app.RunAsync();
 
-        private static IHost BuildWebHost(string[] args) 
-        {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(SetupConfiguration)
-                .ConfigureLogging(SetupLogging)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                })
-                .UseSerilog()
-                .Build();
-        }
 
-        private static void SetupConfiguration(HostBuilderContext context, 
-            IConfigurationBuilder builder)
-        {
-            
-        }
-        
-        private static void SetupLogging(HostBuilderContext context, 
-            ILoggingBuilder builder)
-        {
-            var seqUrl = context.Configuration.GetValue<string>("logging:seqUrl");
+void InitializeLogger(IConfiguration configuration)
+{
+    // Send any Serilog configuration issues logs to console.
+    Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
+    Serilog.Debugging.SelfLog.Enable(Console.Error);
 
-            // Send any Serilog configuration issue logs to console.
-            Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
-            Serilog.Debugging.SelfLog.Enable(Console.Error);
-            
-            var logConfig = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    var logConfig = new LoggerConfiguration()
+        .MinimumLevel.Debug()
+        .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
 
-                .Enrich.FromLogContext()
-                .Enrich.WithCorrelationId()
-                .Enrich.WithHostIdentity(WebApiPlugin.HostId, WebApiPlugin.HostName)
-                
-                .WriteTo.Console();
+        .Enrich.FromLogContext()
+        .Enrich.WithCorrelationId()
+        .Enrich.WithHostIdentity(WebApiPlugin.HostId, WebApiPlugin.HostName);
 
-            if (! string.IsNullOrEmpty(seqUrl))
-            {
-                logConfig.WriteTo.Seq(seqUrl);
-            }
-            
-            Log.Logger = logConfig.CreateLogger();
-        }
+    logConfig.WriteTo.Console(theme: AnsiConsoleTheme.Literate);
+
+    var seqUrl = configuration.GetValue<string>("logging:seqUrl");
+    if (!string.IsNullOrEmpty(seqUrl))
+    {
+        logConfig.WriteTo.Seq(seqUrl);
     }
+
+    Log.Logger = logConfig.CreateLogger();
+}
+
+void SetupConfiguration(HostBuilderContext context, IConfigurationBuilder configBuilder)
+{
+    
+}
+
+static void SetupLogging(HostBuilderContext context, ILoggingBuilder builder)
+{
+    builder.ClearProviders();
+    builder.AddSerilog(Log.Logger);
 }

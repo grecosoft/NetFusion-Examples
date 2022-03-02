@@ -4,6 +4,6 @@ namespace Core.Component.Plugin
 {
     public interface IAddressValidation : IPluginModuleService
     {
-        string IsValidAddress(string ip);
+        string? IsValidAddress(string ip);
     }
 }

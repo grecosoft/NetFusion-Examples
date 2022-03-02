@@ -11,14 +11,11 @@ namespace Demo.Infra
         IPreQueryFilter,
         IPostQueryFilter
     {
-        private ITimestamp _queryWithTimestamp;
-
         public Task OnPreExecuteAsync(IQuery query)
         {
             if (query is ITimestamp timestamp)
             {
                 timestamp.CurrentDate = DateTime.UtcNow;
-                _queryWithTimestamp = timestamp;
             }
 
             return Task.CompletedTask;
@@ -26,12 +23,11 @@ namespace Demo.Infra
 
         public Task OnPostExecuteAsync(IQuery query)
         {
-            if (_queryWithTimestamp == null) return Task.CompletedTask;
-
-            if (query.Result is IAttributedEntity attributed)
+            if (query is ITimestamp timestamp && query.Result is IAttributedEntity attributed)
             {
-                attributed.Attributes.Values.DayOfWeek = _queryWithTimestamp.CurrentDate.DayOfWeek;
+                attributed.Attributes.Values.DayOfWeek = timestamp.CurrentDate.DayOfWeek;
             }
+            
             return Task.CompletedTask;
         }
     }

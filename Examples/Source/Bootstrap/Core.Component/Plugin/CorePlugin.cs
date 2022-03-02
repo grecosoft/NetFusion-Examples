@@ -12,11 +12,11 @@ namespace Core.Component.Plugin
         public CorePlugin() 
         {
             Description = "Plugin component containing non application specific components.";
-            
-            AddModule<CoreModuleOne>();
+	    
+	    AddModule<CoreModuleOne>();
             AddModule<CoreModuleTwo>();
             AddModule<ValidAddressModule>();
-            AddModule<NumberGeneratorModule>();
+	    AddModule<NumberGeneratorModule>();
         }
     }
 }
