@@ -1138,7 +1138,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/health-monitor/service/Service1",
+							"raw": "http://localhost:5000/api/health-monitor/services/Service1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1147,7 +1147,7 @@
 							"path": [
 								"api",
 								"health-monitor",
-								"service",
+								"services",
 								"Service1"
 							]
 						}

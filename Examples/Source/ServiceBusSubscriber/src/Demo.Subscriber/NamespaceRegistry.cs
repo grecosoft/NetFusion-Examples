@@ -26,7 +26,7 @@ namespace Demo.Subscriber
             // Indicates that a subscription named expensive-properties, defined on the
             // property-listing topic, will be delivered all domain-events for which the
             // associated price is greater than $250k
-            Subscription("property-listing", "expensive-properties", config =>
+            ConfigTopicSubscription("property-listing", "expensive-properties", config =>
             {
                 config.AddRule("expensive", new SqlRuleFilter("price > 250000") );
             });

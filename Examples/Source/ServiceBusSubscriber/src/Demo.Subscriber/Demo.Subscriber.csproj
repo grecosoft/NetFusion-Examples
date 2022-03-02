@@ -9,8 +9,12 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
-    <PackageReference Include="NetFusion.Azure.ServiceBus" Version="7.0.23" />
-	<PackageReference Include="NetFusion.Builder" Version="7.0.23" />
+    <PackageReference Include="NetFusion.Azure.ServiceBus" Version="6.0.18" />
+	<PackageReference Include="NetFusion.Builder" Version="6.0.18" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
+    <PackageReference Include="NetFusion.Serilog" Version="6.0.18" />
   </ItemGroup>
 
 
