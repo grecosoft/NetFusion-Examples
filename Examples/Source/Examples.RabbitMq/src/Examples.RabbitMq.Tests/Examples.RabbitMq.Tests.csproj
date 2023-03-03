@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="6.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Components\Examples.RabbitMq.App\Examples.RabbitMq.App.csproj" />
+    <ProjectReference Include="..\Components\Examples.RabbitMq.Infra\Examples.RabbitMq.Infra.csproj" />
+    <ProjectReference Include="..\Components\Examples.RabbitMq.Domain\Examples.RabbitMq.Domain.csproj" />
+    <ProjectReference Include="..\Examples.RabbitMq.WebApi\Examples.RabbitMq.WebApi.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NetFusion.Common" Version="7.0.75" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.75" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.75" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.75" />
+    <PackageReference Include="NetFusion.Core.TestFixtures" Version="7.0.75" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+  </ItemGroup>
+</Project>
