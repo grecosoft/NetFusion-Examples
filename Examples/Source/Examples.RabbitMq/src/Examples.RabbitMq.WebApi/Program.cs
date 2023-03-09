@@ -2,10 +2,10 @@
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
-using Examples.RabbitMq.App.Plugin;
-using Examples.RabbitMq.Domain.Plugin;
-using Examples.RabbitMq.Infra.Plugin;
-using Examples.RabbitMq.WebApi.Plugin;
+using Examples.RabbitMQ.App.Plugin;
+using Examples.RabbitMQ.Domain.Plugin;
+using Examples.RabbitMQ.Infra.Plugin;
+using Examples.RabbitMQ.WebApi.Plugin;
 using System.Diagnostics;
 using NetFusion.Common.Base.Serialization;
 using NetFusion.Core.Bootstrap.Container;

@@ -7,7 +7,7 @@ using NetFusion.Integration.RabbitMQ;
 using NetFusion.Messaging;
 using NetFusion.Messaging.Types.Attributes;
 
-namespace Examples.RabbitMq.WebApi.Controllers;
+namespace Examples.RabbitMQ.WebApi.Controllers;
 
 [ApiController, Route("api/[controller]")]
 public class ExampleController : ControllerBase

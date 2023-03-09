@@ -1,6 +1,6 @@
 using NetFusion.Core.Bootstrap.Plugins;
 
-namespace Examples.RabbitMq.Domain.Plugin;
+namespace Examples.RabbitMQ.Domain.Plugin;
 
 public class DomainPlugin : PluginBase
 {

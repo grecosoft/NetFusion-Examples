@@ -1,7 +1,7 @@
 ﻿using NetFusion.Core.Bootstrap.Plugins;
-using Examples.RabbitMq.Infra.Plugin.Modules;
+using Examples.RabbitMQ.Infra.Plugin.Modules;
 
-namespace Examples.RabbitMq.Infra.Plugin;
+namespace Examples.RabbitMQ.Infra.Plugin;
 
 public class InfraPlugin : PluginBase
 {

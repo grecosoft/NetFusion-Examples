@@ -1,7 +1,7 @@
 using NetFusion.Core.Bootstrap.Plugins;
 using Examples.RabbitMQ.App.Plugin.Modules;
 
-namespace Examples.RabbitMq.App.Plugin;
+namespace Examples.RabbitMQ.App.Plugin;
 
 public class AppPlugin : PluginBase
 {

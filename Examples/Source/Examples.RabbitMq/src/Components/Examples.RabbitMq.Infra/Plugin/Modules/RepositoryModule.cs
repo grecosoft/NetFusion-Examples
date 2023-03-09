@@ -2,7 +2,7 @@ using Examples.RabbitMQ.App.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using NetFusion.Core.Bootstrap.Plugins;
 
-namespace Examples.RabbitMq.Infra.Plugin.Modules;
+namespace Examples.RabbitMQ.Infra.Plugin.Modules;
 
 public class RepositoryModule : PluginModule
 {

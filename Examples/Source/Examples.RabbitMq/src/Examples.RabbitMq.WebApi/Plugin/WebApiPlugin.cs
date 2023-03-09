@@ -1,6 +1,6 @@
 ﻿using NetFusion.Core.Bootstrap.Plugins;
 
-namespace Examples.RabbitMq.WebApi.Plugin;
+namespace Examples.RabbitMQ.WebApi.Plugin;
 
 public class WebApiPlugin : PluginBase
 {
