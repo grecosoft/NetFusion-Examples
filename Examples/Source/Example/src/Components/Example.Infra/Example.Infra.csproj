@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Examples.RabbitMq.Infra</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Example.Domain\Example.Domain.csproj" />
+    <ProjectReference Include="..\Example.App\Example.App.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NetFusion.Common" Version="7.0.84" />
+    <PackageReference Include="NetFusion.common.Base" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.84" />
+  </ItemGroup>
+</Project>

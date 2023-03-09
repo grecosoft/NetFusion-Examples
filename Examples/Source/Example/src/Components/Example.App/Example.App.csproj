@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Examples.RabbitMq.App</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Example.Domain\Example.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NetFusion.Common" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Messaging.Types" Version="7.0.84" />
+  </ItemGroup>
+</Project>

@@ -1,18 +1,26 @@
 using System;
-using Examples.RabbitMq.Domain.Events;
+using System.Threading;
+using System.Threading.Tasks;
+using Examples.RabbitMQ.Domain.Events;
 using NetFusion.Common.Extensions;
 
-namespace Examples.RabbitMq.App.Handlers;
+namespace Examples.RabbitMQ.App.Handlers;
 
 public class RealEstateHandler
 {
-    public void NorthEast(PropertySold propertySold)
+    public async Task OnNorthEastProperty(PropertySold domainEvent, CancellationToken token)
     {
-        Console.WriteLine(propertySold.ToIndentedJson());
+        Console.WriteLine(nameof(OnNorthEastProperty));
+        
+        await Task.Delay(TimeSpan.FromMilliseconds(1), token);
+        Console.WriteLine(domainEvent.ToIndentedJson());
+        
+        token.ThrowIfCancellationRequested();
     }
     
-    public void SouthEast(PropertySold propertySold)
+    public void OnSouthEastProperty(PropertySold domainEvent)
     {
-        Console.WriteLine(propertySold.ToIndentedJson());
+        Console.WriteLine(nameof(OnSouthEastProperty));
+        Console.WriteLine(domainEvent.ToIndentedJson());
     }
 }

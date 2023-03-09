@@ -1,13 +1,19 @@
-using System;
 using NetFusion.Messaging.Types;
 
-namespace Examples.RabbitMq.Domain.Commands;
+namespace Examples.RabbitMQ.Domain.Commands;
 
 public class SendEmail : Command
 {
-    public string? Subject { get; set; }
-    public string? FromAddress { get; set; }
-    public string[] ToAddresses { get; set; } = Array.Empty<string>();
-    public string? Message { get; set; }
-    
+    public string Subject { get; }
+    public string FromAddress { get; }
+    public string[] ToAddresses { get; }
+    public string Message { get; }
+
+    public SendEmail(string subject, string fromAddress, string[] toAddresses, string message)
+    {
+        Subject = subject;
+        FromAddress = fromAddress;
+        ToAddresses = toAddresses;
+        Message = message;
+    }
 }

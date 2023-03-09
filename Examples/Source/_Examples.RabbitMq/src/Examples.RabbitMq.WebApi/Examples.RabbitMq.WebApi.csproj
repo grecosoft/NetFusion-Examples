@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+	<ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Components\Examples.RabbitMq.App\Examples.RabbitMq.App.csproj" />
+    <ProjectReference Include="..\Components\Examples.RabbitMq.Domain\Examples.RabbitMq.Domain.csproj" />
+    <ProjectReference Include="..\Components\Examples.RabbitMq.Infra\Examples.RabbitMq.Infra.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EasyNetQ.Serialization.SystemTextJson" Version="7.4.3" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Core.Builder" Version="7.0.84" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NetFusion.Services.Messaging" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Services.Serialization" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Web" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Web.Common" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Web.Rest.Resources" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Web.Rest.Server" Version="7.0.84" />
+    <PackageReference Include="NetFusion.Services.Serilog" Version="7.0.84" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
+	<PackageReference Include="Destructurama.Attributed" Version="3.0.0" />
+  </ItemGroup>
+</Project>

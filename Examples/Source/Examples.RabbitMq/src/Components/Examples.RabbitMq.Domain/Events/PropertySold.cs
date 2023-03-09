@@ -1,6 +1,6 @@
 using NetFusion.Messaging.Types;
 
-namespace Examples.RabbitMq.Domain.Events;
+namespace Examples.RabbitMQ.Domain.Events;
 
 public class PropertySold : DomainEvent
 {

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Examples.ServiceBus.Domain\Examples.ServiceBus.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NetFusion.Common" Version="7.0.86" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.86" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.86" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.86" />
+    <PackageReference Include="NetFusion.Messaging.Types" Version="7.0.86" />
+  </ItemGroup>
+</Project>

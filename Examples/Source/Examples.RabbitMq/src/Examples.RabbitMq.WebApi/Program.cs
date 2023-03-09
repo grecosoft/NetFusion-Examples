@@ -1,5 +1,4 @@
 ﻿using Destructurama;
-using NetFusion.Messaging.Plugin;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -11,28 +10,20 @@ using System.Diagnostics;
 using NetFusion.Common.Base.Serialization;
 using NetFusion.Core.Bootstrap.Container;
 using NetFusion.Core.Builder;
-using NetFusion.Core.Builder.Kubernetes;
 using NetFusion.Core.Settings.Plugin;
 using NetFusion.Integration.RabbitMQ.Plugin;
 using NetFusion.Integration.RabbitMQ.Plugin.Configs;
+using NetFusion.Messaging.Plugin;
 using NetFusion.Messaging.Plugin.Configs;
 using NetFusion.Services.Messaging.Enrichers;
 using NetFusion.Services.Serialization;
 using NetFusion.Services.Serilog;
-using NetFusion.Web.Extensions;
-using NetFusion.Web.Plugin;
-using NetFusion.Web.Rest.Server.Plugin;
 
 // Allows changing the minimum log level of the service at runtime.
 LogLevelControl logLevelControl = new();
 logLevelControl.SetMinimumLevel(LogLevel.Trace);
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Initialize Configuration:
-builder.Configuration.AddVolumeMounts(
-    "/etc/microservice/configs", 
-    "/etc/microservice/secrets");
 
 // Configure Logging:
 InitializeLogger(builder.Configuration);
@@ -54,17 +45,15 @@ try
     // Add Plugins to the Composite-Container:
     builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger())
         .AddSettings()
-        .AddMessaging()
-        .InitPluginConfig<MessageDispatchConfig> (c =>
-        {
-            c.AddEnricher<CorrelationEnricher>();
-            c.AddEnricher<HostEnricher>();
-            c.AddEnricher<DateOccurredEnricher>();
-        })
-        .AddWebMvc()
-        .AddRest()
+        
         .AddRabbitMq()
         .InitPluginConfig<RabbitMqConfig>(c => c.IsAutoCreateEnabled = true)
+        .InitPluginConfig<MessageDispatchConfig>(c =>
+        {
+            c.AddEnricher<CorrelationEnricher>();
+            c.AddEnricher<DateOccurredEnricher>();
+            c.AddEnricher<HostEnricher>();
+        })
         
         .AddPlugin<InfraPlugin>()
         .AddPlugin<AppPlugin>()
@@ -82,34 +71,10 @@ catch
 
 var app = builder.Build();
 
-string? viewerUrl = app.Configuration.GetValue<string>("Netfusion:ViewerUrl");
-if (!string.IsNullOrWhiteSpace(viewerUrl))
-{
-    app.UseCors(cors => cors.WithOrigins(viewerUrl)
-        .AllowAnyMethod()
-        .AllowCredentials()
-        .WithExposedHeaders("WWW-Authenticate", "resource-404")
-        .AllowAnyHeader());
-}
-
 app.UseSerilogRequestLogging();
-
-app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
-
-// Expose URLs used to check the current status of the microservice:
-app.MapHealthCheck();
-app.MapStartupCheck();
-app.MapReadinessCheck();
-
 app.MapControllers();
-
-if (app.Environment.IsDevelopment())
-{
-    app.MapCompositeLog();
-}
-
 
 // Reference the Composite-Application to start the plugins then
 // start the web application.

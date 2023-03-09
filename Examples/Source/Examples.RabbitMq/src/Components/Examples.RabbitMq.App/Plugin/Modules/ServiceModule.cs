@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NetFusion.Core.Bootstrap.Catalog;
 using NetFusion.Core.Bootstrap.Plugins;
 
-namespace Examples.RabbitMq.App.Plugin.Modules;
+namespace Examples.RabbitMQ.App.Plugin.Modules;
 
 public class ServiceModule : PluginModule
 {

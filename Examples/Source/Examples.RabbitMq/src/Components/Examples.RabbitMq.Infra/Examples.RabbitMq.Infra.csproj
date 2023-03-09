@@ -5,18 +5,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Examples.RabbitMq.Domain\Examples.RabbitMq.Domain.csproj" />
-    <ProjectReference Include="..\Examples.RabbitMq.App\Examples.RabbitMq.App.csproj" />
+    <ProjectReference Include="..\Examples.RabbitMQ.Domain\Examples.RabbitMQ.Domain.csproj" />
+    <ProjectReference Include="..\Examples.RabbitMQ.App\Examples.RabbitMQ.App.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NetFusion.Integration.RabbitMQ" Version="7.0.90" />
+    <PackageReference Include="NetFusion.Services.Messaging" Version="7.0.90" />
+    <PackageReference Include="NetFusion.Services.Serialization" Version="7.0.90" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.75" />
-    <PackageReference Include="NetFusion.common.Base" Version="7.0.75" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.75" />
-    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.75" />
-    <PackageReference Include="NetFusion.Messaging" Version="7.0.75" />
-    <PackageReference Include="NetFusion.Integration.RabbitMQ" Version="7.0.75" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.90" />
+    <PackageReference Include="NetFusion.common.Base" Version="7.0.90" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.90" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.90" />
   </ItemGroup>
 </Project>

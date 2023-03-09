@@ -1,13 +1,14 @@
 using System;
-using Examples.RabbitMq.Domain.Commands;
+using Examples.RabbitMQ.Domain.Commands;
 using NetFusion.Common.Extensions;
 
-namespace Examples.RabbitMq.App.Handlers;
+namespace Examples.RabbitMQ.App.Handlers;
 
 public class EmailHandler
 {
-    public void GenerateEmail(SendEmail email)
+    public void OnSendEmail(SendEmail command)
     {
-        Console.WriteLine(email.ToIndentedJson());
+        Console.WriteLine(nameof(OnSendEmail));
+        Console.WriteLine(command.ToIndentedJson());
     }
 }
