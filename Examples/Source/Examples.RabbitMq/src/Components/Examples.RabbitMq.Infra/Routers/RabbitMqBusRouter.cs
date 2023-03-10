@@ -4,7 +4,7 @@ using Examples.RabbitMQ.Domain.Commands;
 using Examples.RabbitMQ.Domain.Events;
 using NetFusion.Integration.RabbitMQ;
 
-namespace Examples.RabbitMQ.Infra;
+namespace Examples.RabbitMQ.Infra.Routers;
 
 public class RabbitMqBusRouter : RabbitMqRouter
 {

@@ -1,4 +1,5 @@
 using Examples.RabbitMQ.App.Repositories;
+using Examples.RabbitMQ.Infra.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using NetFusion.Core.Bootstrap.Plugins;
 

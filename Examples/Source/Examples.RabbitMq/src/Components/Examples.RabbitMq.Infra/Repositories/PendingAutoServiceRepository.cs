@@ -4,7 +4,7 @@ using Examples.RabbitMQ.App.Repositories;
 using Examples.RabbitMQ.Domain.Commands;
 using NetFusion.Messaging.Types.Attributes;
 
-namespace Examples.RabbitMQ.Infra;
+namespace Examples.RabbitMQ.Infra.Repositories;
 
 public class PendingAutoServiceRepository : IPendingAutoServiceRepository
 {
