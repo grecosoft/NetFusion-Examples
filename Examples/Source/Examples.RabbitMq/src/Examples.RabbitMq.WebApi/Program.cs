@@ -13,7 +13,6 @@ using NetFusion.Core.Builder;
 using NetFusion.Core.Settings.Plugin;
 using NetFusion.Integration.RabbitMQ.Plugin;
 using NetFusion.Integration.RabbitMQ.Plugin.Configs;
-using NetFusion.Messaging.Plugin;
 using NetFusion.Messaging.Plugin.Configs;
 using NetFusion.Services.Messaging.Enrichers;
 using NetFusion.Services.Serialization;

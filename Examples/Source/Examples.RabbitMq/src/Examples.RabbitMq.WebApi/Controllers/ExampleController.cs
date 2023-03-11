@@ -100,7 +100,6 @@ public class ExampleController : ControllerBase
 
         var command = new GenerateServiceReport(model.Make, model.Model, model.Year, model.Miles)
         {
-            DateLastServiced = DateOnly.Parse("12/10/2021"),
             Notes = model.Notes
         };
 
@@ -130,5 +129,44 @@ public class ExampleController : ControllerBase
         await _queueResponse.RespondToSenderAsync(pendingRequest, report);
         _serviceRepository.Remove(model.CorrelationId);
         return Ok();
+    }
+    
+    [HttpPost("services/configuration")]
+    public async Task<IActionResult> UpdateConfiguration(ConfigurationModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var domainEvent = new ConfigurationUpdated(model.MinLogLevel, model.ClearStatistics, model.RestoreAfterSeconds);
+        await _messaging.PublishAsync(domainEvent);
+        return Ok();
+    }
+    
+    [HttpPost("calculations/auto/tax")]
+    public async Task<IActionResult> CalculateAutoTax([FromBody] AutoTax model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        
+        var command = new CalculateAutoTax(model.Vin, model.ZipCode);
+        var result = await _messaging.SendAsync(command);
+        return Ok(result);
+    }
+
+    [HttpPost("calculations/property/tax")]
+    public async Task<IActionResult> CalculatePropertyTax([FromBody] PropertyTax model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        
+        var command = new CalculatePropertyTax(model.Address, model.City, model.State, model.Zip);
+        var result = await _messaging.SendAsync(command);
+        return Ok(result);
     }
 }

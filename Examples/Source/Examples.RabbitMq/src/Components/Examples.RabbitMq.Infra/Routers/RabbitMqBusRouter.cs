@@ -49,6 +49,15 @@ public class RabbitMqBusRouter : RabbitMqRouter
                 c => c.OnServiceReportReceived, 
                 queue => queue.QueueName = "FinishedServiceReports") );
         
+        DefineExchange<ConfigurationUpdated>(exchange =>
+        {
+            exchange.ExchangeType = ExchangeType.Fanout;
+            exchange.ExchangeName = "ConfigurationUpdates";
+            exchange.IsDurable = false;
+        });
+        
+        RouteToRpcQueue<CalculateAutoTax>("TaxCalculations");
+        RouteToRpcQueue<CalculatePropertyTax>("TaxCalculations");
             
         // Subscribing Microservice:
         // ------------------------------------------------
@@ -113,6 +122,26 @@ public class RabbitMqBusRouter : RabbitMqRouter
             route.ToConsumer<ServiceGenerationHandler>(
                 c => c.OnGenerateServiceReport, 
                 queue => queue.QueueName = "GenerateCarServiceReports");
+        });
+        
+        SubscribeToFanOutExchange<ConfigurationUpdated> ("ConfigurationUpdates", 
+            route => route.ToConsumer<ConfigurationHandler>(
+                c => c.OnConfigurationUpdate, queue =>
+                {
+                    queue.QueueName = "UpdateServiceConfiguration";
+                    queue.IsAutoDelete = true;
+                }), isPerServiceInstance: true);
+        
+        DefineRpcQueue("TaxCalculations", meta => { meta.PrefetchCount = 5; });
+        
+        DefineRpcQueueRoute<CalculateAutoTax, TaxCalc>("TaxCalculations", route =>
+        {
+            route.ToConsumer<TaxCalculationHandler>(c => c.CalculateAutoTax);
+        });
+
+        DefineRpcQueueRoute<CalculatePropertyTax, TaxCalc>("TaxCalculations", route =>
+        {
+            route.ToConsumer<TaxCalculationHandler>(c => c.CalculatePropertyTax);
         });
     }
 }
