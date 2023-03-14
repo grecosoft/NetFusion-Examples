@@ -7,9 +7,15 @@ using Examples.ServiceBus.Domain.Plugin;
 using Examples.ServiceBus.WebApi.Plugin;
 using System.Diagnostics;
 using Examples.ServiceBus.Infra.Plugin;
+using NetFusion.Common.Base.Serialization;
 using NetFusion.Core.Bootstrap.Container;
 using NetFusion.Core.Builder;
 using NetFusion.Core.Settings.Plugin;
+using NetFusion.Integration.ServiceBus.Plugin;
+using NetFusion.Integration.ServiceBus.Plugin.Configs;
+using NetFusion.Messaging.Plugin.Configs;
+using NetFusion.Services.Messaging.Enrichers;
+using NetFusion.Services.Serialization;
 using NetFusion.Services.Serilog;
 
 // Allows changing the minimum log level of the service at runtime.
@@ -37,11 +43,24 @@ try
     // Add Plugins to the Composite-Container:
     builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger())
         .AddSettings()
+        
+        .AddAzureServiceBus()
+        .InitPluginConfig((ServiceBusConfig c) => c.IsAutoCreateEnabled = true)
+        .InitPluginConfig<MessageDispatchConfig>(c =>
+        {
+            c.AddEnricher<CorrelationEnricher>();
+            c.AddEnricher<DateOccurredEnricher>();
+            c.AddEnricher<HostEnricher>();
+        })
+        
         .AddPlugin<InfraPlugin>()
         .AddPlugin<AppPlugin>()
         .AddPlugin<DomainPlugin>()
         .AddPlugin<WebApiPlugin>()
-        .Compose();
+        .Compose(s =>
+        { 
+            s.AddSingleton<ISerializationManager, SerializationManager>();
+        });
 }
 catch
 {

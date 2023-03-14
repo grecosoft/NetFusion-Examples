@@ -1,14 +1,14 @@
 using System;
-using Examples.RabbitMQ.Domain.Commands;
+using Examples.ServiceBus.Domain.Commands;
 using NetFusion.Common.Extensions;
 
-namespace Examples.RabbitMQ.App.Handlers;
+namespace Examples.ServiceBus.App.Handlers;
 
 public class CarFaxGenerationHandler
 {
     public CarFaxReport GenerateCarFax(GenerateCarFaxReport command)
     {
-        Console.WriteLine(nameof(GenerateCarFaxReport));
+        Console.WriteLine(nameof(CarFaxGenerationHandler));
         Console.WriteLine(command.ToIndentedJson());
         
         return command.State switch

@@ -1,5 +1,6 @@
-﻿using NetFusion.Core.Bootstrap.Plugins;
-using Solution.Context.Infra.Plugin.Modules;
+﻿using Examples.ServiceBus.Infra.Plugin.Modules;
+using NetFusion.Core.Bootstrap.Plugins;
+
 
 namespace Examples.ServiceBus.Infra.Plugin;
 
