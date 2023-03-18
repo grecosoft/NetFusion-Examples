@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Examples.RabbitMQ.WebApi.Models;
 
-public class PropertyTax
+public class PropertyTaxModel
 {
     [Required]
     public string Address { get; set; } = string.Empty;

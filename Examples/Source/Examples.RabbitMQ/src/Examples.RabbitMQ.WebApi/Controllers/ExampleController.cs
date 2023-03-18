@@ -145,7 +145,7 @@ public class ExampleController : ControllerBase
     }
     
     [HttpPost("calculations/auto/tax")]
-    public async Task<IActionResult> CalculateAutoTax([FromBody] AutoTax model)
+    public async Task<IActionResult> CalculateAutoTax([FromBody] AutoTaxModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -158,7 +158,7 @@ public class ExampleController : ControllerBase
     }
 
     [HttpPost("calculations/property/tax")]
-    public async Task<IActionResult> CalculatePropertyTax([FromBody] PropertyTax model)
+    public async Task<IActionResult> CalculatePropertyTax([FromBody] PropertyTaxModel model)
     {
         if (!ModelState.IsValid)
         {

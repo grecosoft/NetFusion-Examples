@@ -11,13 +11,13 @@
     <ProjectReference Include="..\Components\Examples.ServiceBus.Infra\Examples.ServiceBus.Infra.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.92" />
-    <PackageReference Include="NetFusion.Common.Base" Version="7.0.92" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.92" />
-    <PackageReference Include="NetFusion.Core.Builder" Version="7.0.92" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.94" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.94" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.94" />
+    <PackageReference Include="NetFusion.Core.Builder" Version="7.0.94" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Services.Serilog" Version="7.0.92" />
+    <PackageReference Include="NetFusion.Services.Serilog" Version="7.0.94" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />

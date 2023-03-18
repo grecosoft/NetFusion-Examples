@@ -9,12 +9,14 @@
     <ProjectReference Include="..\Examples.Redis.App\Examples.Redis.App.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NetFusion.Integration.Redis" Version="7.0.94" />
+    <PackageReference Include="NetFusion.Services.Serialization" Version="7.0.94" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.92" />
-    <PackageReference Include="NetFusion.common.Base" Version="7.0.92" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.92" />
-    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.92" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.94" />
+    <PackageReference Include="NetFusion.common.Base" Version="7.0.94" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.94" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.94" />
   </ItemGroup>
 </Project>

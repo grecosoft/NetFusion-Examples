@@ -7,9 +7,12 @@ using Examples.Redis.Domain.Plugin;
 using Examples.Redis.WebApi.Plugin;
 using System.Diagnostics;
 using Examples.Redis.Infra.Plugin;
+using NetFusion.Common.Base.Serialization;
 using NetFusion.Core.Bootstrap.Container;
 using NetFusion.Core.Builder;
 using NetFusion.Core.Settings.Plugin;
+using NetFusion.Integration.Redis.Plugin;
+using NetFusion.Services.Serialization;
 using NetFusion.Services.Serilog;
 
 // Allows changing the minimum log level of the service at runtime.
@@ -37,11 +40,15 @@ try
     // Add Plugins to the Composite-Container:
     builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger())
         .AddSettings()
+        .AddRedis()
         .AddPlugin<InfraPlugin>()
         .AddPlugin<AppPlugin>()
         .AddPlugin<DomainPlugin>()
         .AddPlugin<WebApiPlugin>()
-        .Compose();
+        .Compose(s =>
+        { 
+            s.AddSingleton<ISerializationManager, SerializationManager>();
+        });
 }
 catch
 {

@@ -10,7 +10,7 @@ public class InfraPlugin : PluginBase
     public override string Name => "Infrastructure Application Component";
 
     public InfraPlugin() {
-        AddModule<RepositoryModule>();
+        AddModule<ServiceModule>();
 
         Description = "Plugin component containing the application infrastructure.";
     }
