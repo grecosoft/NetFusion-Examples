@@ -11,16 +11,16 @@
     <ProjectReference Include="..\Components\Examples.RabbitMQ.Infra\Examples.RabbitMQ.Infra.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.90" />
-    <PackageReference Include="NetFusion.Common.Base" Version="7.0.90" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.90" />
-    <PackageReference Include="NetFusion.Core.Builder" Version="7.0.90" />
-    <PackageReference Include="NetFusion.Services.Serilog" Version="7.0.90" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Core.Builder" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Services.Serilog" Version="7.0.31" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.2" />
 	<PackageReference Include="Destructurama.Attributed" Version="3.0.0" />
   </ItemGroup>
 </Project>

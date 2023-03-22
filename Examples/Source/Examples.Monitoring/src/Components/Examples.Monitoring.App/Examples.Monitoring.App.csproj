@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Examples.Monitoring.Domain\Examples.Monitoring.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NetFusion.Common" Version="7.0.1-dev" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.1-dev" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.1-dev" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.1-dev" />
+  </ItemGroup>
+</Project>

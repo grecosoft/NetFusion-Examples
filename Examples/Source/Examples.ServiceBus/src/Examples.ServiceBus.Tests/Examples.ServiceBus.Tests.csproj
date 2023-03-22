@@ -7,8 +7,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="6.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="7.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Components\Examples.ServiceBus.App\Examples.ServiceBus.App.csproj" />
@@ -17,14 +17,17 @@
     <ProjectReference Include="..\Examples.ServiceBus.WebApi\Examples.ServiceBus.WebApi.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.94" />
-    <PackageReference Include="NetFusion.Common.Base" Version="7.0.94" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.94" />
-    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.94" />
-    <PackageReference Include="NetFusion.Core.TestFixtures" Version="7.0.94" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Core.TestFixtures" Version="7.0.31" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

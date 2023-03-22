@@ -8,10 +8,10 @@
     <ProjectReference Include="..\Examples.RabbitMQ.Domain\Examples.RabbitMQ.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.90" />
-    <PackageReference Include="NetFusion.Common.Base" Version="7.0.90" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.90" />
-    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.90" />
-    <PackageReference Include="NetFusion.Messaging.Types" Version="7.0.90" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.31" />
+    <PackageReference Include="NetFusion.Messaging.Types" Version="7.0.31" />
   </ItemGroup>
 </Project>
