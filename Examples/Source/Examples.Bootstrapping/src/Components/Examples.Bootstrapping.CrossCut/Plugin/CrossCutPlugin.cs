@@ -13,6 +13,7 @@ public class CrossCutPlugin : PluginBase
     {
         AddModule<CoreModuleOne>();
         AddModule<CoreModuleTwo>();
+        AddModule<ValidAddressModule>();
         
         Description = "Example of a core plugin";
     }   
