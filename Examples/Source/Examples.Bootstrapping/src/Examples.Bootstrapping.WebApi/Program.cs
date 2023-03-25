@@ -1,4 +1,5 @@
 ﻿using Examples.Bootstrapping.App.Plugin;
+using Examples.Bootstrapping.App.Plugin.Configs;
 using Examples.Bootstrapping.CrossCut.Plugin;
 using Examples.Bootstrapping.Domain.Plugin;
 using Examples.Bootstrapping.Infra.Plugin;
@@ -38,6 +39,8 @@ try
         .AddPlugin<AppPlugin>()
         .AddPlugin<DomainPlugin>()
         .AddPlugin<WebApiPlugin>()
+        
+        .InitPluginConfig((HelloWorldConfig config) => config.SetMessage("is anyone home?"))
         .Compose();
 }
 catch

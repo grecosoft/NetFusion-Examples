@@ -1,3 +1,4 @@
+using Examples.Bootstrapping.App.Plugin.Configs;
 using NetFusion.Core.Bootstrap.Plugins;
 using Examples.Bootstrapping.App.Plugin.Modules;
 
@@ -11,7 +12,10 @@ public class AppPlugin : PluginBase
 
     public AppPlugin()
     {
+        AddConfig<HelloWorldConfig>();
+        
         AddModule<ServiceModule>();
+        AddModule<AppModuleOne>();
 
         Description = "Plugin component containing the Microservice's application services.";
     }   

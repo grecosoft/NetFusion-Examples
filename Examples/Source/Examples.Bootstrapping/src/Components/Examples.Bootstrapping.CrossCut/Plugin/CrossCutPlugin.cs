@@ -1,3 +1,4 @@
+using Examples.Bootstrapping.CrossCut.Plugin.Modules;
 using NetFusion.Core.Bootstrap.Plugins;
 
 namespace Examples.Bootstrapping.CrossCut.Plugin;
@@ -10,6 +11,9 @@ public class CrossCutPlugin : PluginBase
 
     public CrossCutPlugin()
     {
+        AddModule<CoreModuleOne>();
+        AddModule<CoreModuleTwo>();
+        
         Description = "Example of a core plugin";
     }   
 }

@@ -1,4 +1,5 @@
-﻿using NetFusion.Core.Bootstrap.Plugins;
+﻿using Examples.Bootstrapping.WebApi.Plugin.Modules;
+using NetFusion.Core.Bootstrap.Plugins;
 
 namespace Examples.Bootstrapping.WebApi.Plugin;
 
@@ -13,6 +14,8 @@ public class WebApiPlugin : PluginBase
         
     public WebApiPlugin()
     {
+        AddModule<HostModuleOne>();
+        
         Description = "WebApi host exposing REST/HAL based Web API.";
     }
 }
