@@ -22,8 +22,8 @@ public class AppModuleOne : PluginModule
         var config = Context.Plugin.GetConfig<HelloWorldConfig>();
         if (!string.IsNullOrEmpty(config.Message))
         {
-            Console.WriteLine(
-                $"The host application with the name of: {Context.AppHost.Name} says Hello {config.Message}");
+            NfExtensions.Logger.Log<PluginModule>(
+                LogLevel.Information, $"The host application with the name of: {Context.AppHost.Name} says Hello {config.Message}");
         }
     }
 
