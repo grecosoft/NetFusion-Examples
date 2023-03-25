@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Examples.Bootstrapping.CrossCut\Examples.Bootstrapping.CrossCut.csproj" />
     <ProjectReference Include="..\Examples.Bootstrapping.Domain\Examples.Bootstrapping.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
