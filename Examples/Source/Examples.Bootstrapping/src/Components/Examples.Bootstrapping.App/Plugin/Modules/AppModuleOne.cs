@@ -1,6 +1,8 @@
 using System;
 using Examples.Bootstrapping.App.Plugin.Configs;
+using Examples.Bootstrapping.CrossCut;
 using Examples.Bootstrapping.CrossCut.Plugin;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NetFusion.Common.Base;
 using NetFusion.Core.Bootstrap.Plugins;
@@ -38,5 +40,10 @@ public class AppModuleOne : PluginModule
             NfExtensions.Logger.Log<AppModuleOne>(
                 LogLevel.Warning, $"102 is value range[{range.Item1}, {range.Item2}]");
         }
+    }
+    
+    public override void RegisterServices(IServiceCollection services)
+    {
+        services.AddSingleton<IValidNumbers, ValidNumberComponent>();
     }
 }
