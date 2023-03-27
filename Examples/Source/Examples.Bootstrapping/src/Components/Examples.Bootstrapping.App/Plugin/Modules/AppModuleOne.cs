@@ -1,4 +1,3 @@
-using System;
 using Examples.Bootstrapping.App.Plugin.Configs;
 using Examples.Bootstrapping.CrossCut;
 using Examples.Bootstrapping.CrossCut.Plugin;
