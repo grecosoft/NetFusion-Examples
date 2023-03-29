@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Examples.Messaging.WebApi.Models;
 
-public class CustomerRegistration
+public class CustomerRegistrationModel
 {
     [Required]
     public string FirstName { get; set; } = string.Empty;

@@ -11,6 +11,7 @@ public class InfraPlugin : PluginBase
 
     public InfraPlugin() {
         AddModule<RepositoryModule>();
+        AddModule<AdapterModule>();
 
         Description = "Plugin component containing the application infrastructure.";
     }
