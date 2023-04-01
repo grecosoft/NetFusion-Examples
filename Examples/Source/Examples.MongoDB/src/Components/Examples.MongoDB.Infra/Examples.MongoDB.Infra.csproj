@@ -9,6 +9,7 @@
     <ProjectReference Include="..\Examples.MongoDB.App\Examples.MongoDB.App.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NetFusion.Integration.MongoDB" Version="7.0.32" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>

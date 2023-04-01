@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+    seq:
+        container_name: seq-dev
+        image: datalust/seq:latest
+        volumes:
+            - seq_data:/data
+        environment:
+            - ACCEPT_EULA=Y
+        ports:
+            - 8051:80      
+            - 5351:5341  
+                            
+    mongodb:
+        container_name: mongo-dev
+        image: mongo:latest
+        environment:
+            - MONGO_DATA_DIR=/data/db
+            - MONGO_LOG_DIR=/data/logs
+        volumes:
+            - mongo_data:/data/db
+            - mongo_logs:/data/logs
+        ports: 
+            -  27027:27017    
+
+    mongodb-express:
+        container_name: mongo-express
+        image: mongo-express
+        links: 
+            - "mongodb"
+            - "mongodb:mongo"
+        ports:
+            - 8081:8081
+
+volumes:
+    seq_data:
+        name: dev-seq_data
+            
+    mongo_data:
+        name: dev-mongo_data
+
+    mongo_logs:
+        name: dev-mongo_logs
+
+networks:
+  default:
+

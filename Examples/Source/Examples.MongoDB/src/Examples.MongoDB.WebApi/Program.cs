@@ -3,6 +3,7 @@ using Examples.MongoDB.Domain.Plugin;
 using Examples.MongoDB.Infra.Plugin;
 using Examples.MongoDB.WebApi.Plugin;
 using NetFusion.Core.Settings.Plugin;
+using NetFusion.Integration.MongoDB.Plugin;
 
 // Allows changing the minimum log level of the service at runtime.
 LogLevelControl logLevelControl = new();
@@ -30,6 +31,7 @@ try
     // Add Plugins to the Composite-Container:
     builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger())
         .AddSettings()
+        .AddMongoDb()
 
         .AddPlugin<InfraPlugin>()
         .AddPlugin<AppPlugin>()
