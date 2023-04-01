@@ -39,6 +39,7 @@ public class MessageController : ControllerBase
         return Ok();
     }
 
+    // Example sending a command.
     [HttpPost("auto/registration")]
     public async Task<IActionResult> SubmitAutoRegistration([FromBody] AutoRegistrationModel model)
     {
@@ -51,21 +52,6 @@ public class MessageController : ControllerBase
         var result = await _messaging.SendAsync(command);
         return Ok(result);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     // Example illustrating Message-Enrichers.
     [HttpPost("register/customer")]
@@ -95,5 +81,22 @@ public class MessageController : ControllerBase
         
         await _messaging.PublishAsync(domainEvent);
         return Ok();
+    }
+    
+    // Logging / Exception Examples
+    [HttpPost("add/task")]
+    public async Task<IActionResult> AddTaskItem([FromBody]TaskItemModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        
+        var command = new AddTaskItemCommand(model.Name, model.Description, 
+            model.DateDue, 
+            model.IsBlocked);
+
+        var result = await _messaging.SendAsync(command);
+        return Ok(result);
     }
 }

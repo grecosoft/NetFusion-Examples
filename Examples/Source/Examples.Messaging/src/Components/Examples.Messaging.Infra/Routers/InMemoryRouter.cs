@@ -40,5 +40,8 @@ public class InMemoryRouter : MessageRouter
 
         OnCommand<RegisterAutoCommand, RegistrationStatus>(route =>
             route.ToConsumer<AutoRegistrationHandler>(c => c.RegisterAuto));
+        
+        OnCommand<AddTaskItemCommand, string>(route => route.ToConsumer<TaskItemHandler>(c => c.CreateTask));
+        OnDomainEvent<ImportantTaskCreated>(route => route.ToConsumer<TaskReminderHandler>(c => c.OnSendReminder));
     }
 }
