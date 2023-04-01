@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="7.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Components\Examples.Mapping.App\Examples.Mapping.App.csproj" />
+    <ProjectReference Include="..\Components\Examples.Mapping.Infra\Examples.Mapping.Infra.csproj" />
+    <ProjectReference Include="..\Components\Examples.Mapping.Domain\Examples.Mapping.Domain.csproj" />
+    <ProjectReference Include="..\Examples.Mapping.WebApi\Examples.Mapping.WebApi.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NetFusion.Common" Version="7.0.32" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.32" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.32" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.32" />
+    <PackageReference Include="NetFusion.Core.TestFixtures" Version="7.0.32" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
