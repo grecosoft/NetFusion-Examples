@@ -1,5 +1,7 @@
 using Examples.Messaging.Domain.Commands;
+using Examples.Messaging.Domain.Entities;
 using Examples.Messaging.Domain.Events;
+using Examples.Messaging.Domain.Queries;
 using Examples.Messaging.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using NetFusion.Messaging;
@@ -51,6 +53,13 @@ public class MessageController : ControllerBase
         var command = new RegisterAutoCommand(model.Make, model.Model, model.Year, model.State);
         var result = await _messaging.SendAsync(command);
         return Ok(result);
+    }
+    
+    [HttpGet("auto/sales/{make}/{year}")]
+    public Task<Car[]> GetAutoSales(string make, int year)
+    {
+        var query = new CarSalesQuery(make, year);
+        return _messaging.DispatchAsync(query);
     }
     
     // Example illustrating Message-Enrichers.
