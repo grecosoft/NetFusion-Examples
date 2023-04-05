@@ -43,6 +43,8 @@ try
             c.AddEnricher<CorrelationEnricher>();
             c.AddEnricher<DateOccurredEnricher>();
             c.AddEnricher<HostEnricher>();
+            
+            c.AddFilter<ScoreMessageFilter>();
         })
 
         .AddPlugin<InfraPlugin>()

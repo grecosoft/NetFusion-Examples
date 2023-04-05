@@ -108,4 +108,13 @@ public class MessageController : ControllerBase
         var result = await _messaging.SendAsync(command);
         return Ok(result);
     }
+
+    [HttpPost("score/filter")]
+    public async Task<IActionResult> FilterTest([FromBody]ScoreModel model)
+    {
+        var command = new PublishScoresCommand(model.Scores);
+        var result = await _messaging.SendAsync(command);
+
+        return Ok(new { result, command.Attributes});
+    }
 }

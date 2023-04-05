@@ -3,6 +3,7 @@ using Examples.Mapping.Domain.Plugin;
 using Examples.Mapping.Infra.Plugin;
 using Examples.Mapping.WebApi.Plugin;
 using NetFusion.Core.Settings.Plugin;
+using NetFusion.Services.Mapping.Plugin;
 
 // Allows changing the minimum log level of the service at runtime.
 LogLevelControl logLevelControl = new();
@@ -30,6 +31,8 @@ try
     // Add Plugins to the Composite-Container:
     builder.Services.CompositeContainer(builder.Configuration, new SerilogExtendedLogger())
         .AddSettings()
+        
+        .AddMapping()
 
         .AddPlugin<InfraPlugin>()
         .AddPlugin<AppPlugin>()

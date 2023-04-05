@@ -9,11 +9,12 @@
     <ProjectReference Include="..\Examples.Mapping.App\Examples.Mapping.App.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NetFusion.Services.Mapping" Version="7.0.8-dev" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.32" />
-    <PackageReference Include="NetFusion.common.Base" Version="7.0.32" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.32" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.common.Base" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.8-dev" />
   </ItemGroup>
 </Project>

@@ -8,9 +8,9 @@
     <ProjectReference Include="..\Examples.Mapping.Domain\Examples.Mapping.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.32" />
-    <PackageReference Include="NetFusion.Common.Base" Version="7.0.32" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.32" />
-    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.32" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.Core.Settings" Version="7.0.8-dev" />
   </ItemGroup>
 </Project>

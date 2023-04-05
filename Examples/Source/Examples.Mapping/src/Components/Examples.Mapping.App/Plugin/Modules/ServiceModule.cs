@@ -1,13 +1,15 @@
+using Examples.Mapping.App.Services;
+using Examples.Mapping.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
-using NetFusion.Core.Bootstrap.Catalog;
 using NetFusion.Core.Bootstrap.Plugins;
 
 namespace Examples.Mapping.App.Plugin.Modules;
 
 public class ServiceModule : PluginModule
 {
-    public override void ScanForServices(ITypeCatalog catalog)
+    public override void RegisterServices(IServiceCollection services)
     {
-        catalog.AsImplementedInterface("Service", ServiceLifetime.Scoped);
+        services.AddScoped<SampleEntityService>();
+        services.AddScoped<IEntityIdGenerator, EntityIdGenerator>();
     }
 }

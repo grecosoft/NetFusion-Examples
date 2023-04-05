@@ -43,9 +43,16 @@ public class InMemoryRouter : MessageRouter
         OnCommand<RegisterAutoCommand, RegistrationStatus>(route =>
             route.ToConsumer<AutoRegistrationHandler>(c => c.RegisterAuto));
         
-        OnCommand<AddTaskItemCommand, string>(route => route.ToConsumer<TaskItemHandler>(c => c.CreateTask));
-        OnDomainEvent<ImportantTaskCreated>(route => route.ToConsumer<TaskReminderHandler>(c => c.OnSendReminder));
+        OnCommand<AddTaskItemCommand, string>(route => 
+            route.ToConsumer<TaskItemHandler>(c => c.CreateTask));
         
-        OnQuery<CarSalesQuery, Car[]>(route => route.ToConsumer<AutoSalesRepository>(c => c.OnQuery));
+        OnDomainEvent<ImportantTaskCreated>(route => 
+            route.ToConsumer<TaskReminderHandler>(c => c.OnSendReminder));
+        
+        OnQuery<CarSalesQuery, Car[]>(route => 
+            route.ToConsumer<AutoSalesRepository>(c => c.OnQuery));
+        
+        OnCommand<PublishScoresCommand, PublishedScoreResult>(route => 
+            route.ToConsumer<PublishScoreHandler>(c => c.OnPublish));
     }
 }

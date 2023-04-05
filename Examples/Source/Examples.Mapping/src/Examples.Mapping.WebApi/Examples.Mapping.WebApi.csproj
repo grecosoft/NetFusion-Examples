@@ -11,14 +11,15 @@
     <ProjectReference Include="..\Components\Examples.Mapping.Infra\Examples.Mapping.Infra.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Common" Version="7.0.32" />
-    <PackageReference Include="NetFusion.Common.Base" Version="7.0.32" />
-    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.32" />
-    <PackageReference Include="NetFusion.Core.Builder" Version="7.0.32" />
+    <PackageReference Include="NetFusion.Common" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.Common.Base" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.Core.Bootstrap" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.Core.Builder" Version="7.0.8-dev" />
+    <PackageReference Include="TinyMapper" Version="3.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NetFusion.Web" Version="7.0.32" />
-    <PackageReference Include="NetFusion.Services.Serilog" Version="7.0.32" />
+    <PackageReference Include="NetFusion.Web" Version="7.0.8-dev" />
+    <PackageReference Include="NetFusion.Services.Serilog" Version="7.0.8-dev" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
