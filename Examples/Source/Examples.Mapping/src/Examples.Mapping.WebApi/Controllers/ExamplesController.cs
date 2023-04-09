@@ -1,4 +1,5 @@
 using Examples.Mapping.App.Services;
+using Examples.Mapping.Domain.Entities;
 using Examples.Mapping.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using NetFusion.Services.Mapping;
@@ -50,5 +51,18 @@ public class ExamplesController : ControllerBase
     {
         var carEntity = _entityService.GetCar();
         return _objectMapper.Map<CarSummary>(carEntity);
+    }
+    
+    [HttpGet("factory-mapping")]
+    public IActionResult MapUsingFactory()
+    {
+        var computer = new Computer("Apple", "Mac Mini", 64, DateTime.Now);
+        var printer = new Printer("HP", "Color Ink Jet", "", 200) { IsColor = true };
+
+        return Ok(new
+        {
+            Computer = _objectMapper.Map<ProductSummary>(computer),
+            Printer = _objectMapper.Map<ProductSummary>(printer)
+        });
     }
 }
